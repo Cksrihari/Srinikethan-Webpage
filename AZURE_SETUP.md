@@ -2,7 +2,7 @@
 
 ## Current Status
 ✅ **Azure SQL Database**: Configured and ready
-⚠️ **ODBC Driver Required**: Microsoft ODBC Driver 17 for SQL Server needed
+⚠️ **ODBC Driver Required**: Microsoft ODBC Driver 18 for SQL Server needed
 
 ## Azure SQL Database Details
 - **Server**: srinikethan.database.windows.net
@@ -16,10 +16,10 @@
 
 **macOS:**
 ```bash
-# Install Microsoft ODBC Driver 17 for SQL Server
+# Install Microsoft ODBC Driver 18 for SQL Server
 brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
 brew update
-brew install msodbcsql17 mssql-tools
+brew install msodbcsql18 mssql-tools18
 ```
 
 **Linux (Ubuntu/Debian):**
@@ -32,7 +32,7 @@ curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list | sudo tee /et
 sudo apt-get update
 
 # Install ODBC driver
-sudo apt-get install msodbcsql17
+sudo apt-get install msodbcsql18
 ```
 
 ## Local Development Setup

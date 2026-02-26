@@ -29,8 +29,8 @@ def test_connection():
     except Exception as e:
         print(f"❌ Connection failed: {e}")
         print("\n🔧 Troubleshooting:")
-        print("1. Ensure Microsoft ODBC Driver 17 for SQL Server is installed")
-        print("   macOS: brew install msodbcsql17")
+        print("1. Ensure Microsoft ODBC Driver 18 for SQL Server is installed")
+        print("   macOS: brew install msodbcsql18")
         print("2. Check your Azure SQL Database firewall settings")
         print("3. Verify database credentials in .env file")
         print("4. Ensure the 'webpage' database exists on the server")

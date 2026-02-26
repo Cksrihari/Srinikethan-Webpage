@@ -92,7 +92,7 @@ DATABASES = {
         'USER': env('DB_USER', default='adminuser'),
         'PASSWORD': env('DB_PASSWORD', default='BlueDragon11'),
         'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
+            'driver': 'ODBC Driver 18 for SQL Server',
             'extra_params': 'Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;'
         }
     }
