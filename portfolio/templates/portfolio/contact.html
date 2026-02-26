@@ -1,110 +1,153 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Contact - {{ settings.site_title }}{% endblock %}
+{% block title %}Connect - {{ settings.site_title }}{% endblock %}
 
 {% block content %}
-<section class="page-header">
+<!-- Connection Gateway -->
+<section class="connection-gateway">
     <div class="container">
-        <h1>Contact Srinikethan</h1>
-        <p>Ready to transform your financial future? Let's connect.</p>
+        <div class="gateway-content">
+            <div class="gateway-header">
+                <span class="connection-label">Let's Connect</span>
+                <h1 class="gateway-title">Start Your Financial Transformation</h1>
+                <p class="gateway-description">Ready to take control of your financial future? I'm here to guide you every step of the way.</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="contact-section">
+<!-- Communication Hub -->
+<section class="communication-hub">
     <div class="container">
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
+        <div class="hub-layout">
+            <!-- Connection Methods -->
+            <div class="connection-methods">
+                <h3 class="methods-title">Ways to Reach Me</h3>
+                
                 {% if settings.contact_email %}
-                <div class="contact-item">
-                    <strong>Email:</strong>
-                    <a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a>
-                </div>
-                {% endif %}
-                {% if settings.contact_phone %}
-                <div class="contact-item">
-                    <strong>Phone:</strong>
-                    <a href="tel:{{ settings.contact_phone }}">{{ settings.contact_phone }}</a>
-                </div>
-                {% endif %}
-                {% if settings.contact_address %}
-                <div class="contact-item">
-                    <strong>Address:</strong>
-                    <p>{{ settings.contact_address|linebreaksbr }}</p>
+                <div class="method-card">
+                    <div class="method-icon">📧</div>
+                    <div class="method-details">
+                        <h4>Email Consultation</h4>
+                        <p>Get detailed responses to your financial questions</p>
+                        <a href="mailto:{{ settings.contact_email }}" class="method-link">{{ settings.contact_email }}</a>
+                    </div>
                 </div>
                 {% endif %}
                 
-                <div class="social-links">
-                    {% if settings.linkedin_url %}
-                    <a href="{{ settings.linkedin_url }}" target="_blank" class="social-link">LinkedIn</a>
-                    {% endif %}
-                    {% if settings.twitter_url %}
-                    <a href="{{ settings.twitter_url }}" target="_blank" class="social-link">Twitter</a>
-                    {% endif %}
-                    {% if settings.facebook_url %}
-                    <a href="{{ settings.facebook_url }}" target="_blank" class="social-link">Facebook</a>
-                    {% endif %}
+                {% if settings.contact_phone %}
+                <div class="method-card">
+                    <div class="method-icon">📱</div>
+                    <div class="method-details">
+                        <h4>Direct Call</h4>
+                        <p>Schedule a personalized phone consultation</p>
+                        <a href="tel:{{ settings.contact_phone }}" class="method-link">{{ settings.contact_phone }}</a>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if settings.contact_address %}
+                <div class="method-card">
+                    <div class="method-icon">📍</div>
+                    <div class="method-details">
+                        <h4>Office Location</h4>
+                        <p>Visit for in-person financial planning sessions</p>
+                        <div class="address-text">{{ settings.contact_address|linebreaksbr }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Social Connections -->
+                <div class="social-connections">
+                    <h4>Connect on Social Media</h4>
+                    <div class="social-grid">
+                        {% if settings.linkedin_url %}
+                        <a href="{{ settings.linkedin_url }}" target="_blank" class="social-btn linkedin">
+                            <span>LinkedIn</span>
+                        </a>
+                        {% endif %}
+                        {% if settings.twitter_url %}
+                        <a href="{{ settings.twitter_url }}" target="_blank" class="social-btn twitter">
+                            <span>Twitter</span>
+                        </a>
+                        {% endif %}
+                        {% if settings.facebook_url %}
+                        <a href="{{ settings.facebook_url }}" target="_blank" class="social-btn facebook">
+                            <span>Facebook</span>
+                        </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             
-            <div class="contact-form">
-                <h3>Send a Message</h3>
+            <!-- Message Portal -->
+            <div class="message-portal">
+                <div class="portal-header">
+                    <h3>Send a Direct Message</h3>
+                    <p>Share your goals, challenges, or questions. I'll respond within 24 hours.</p>
+                </div>
                 
                 {% if messages %}
                     {% for message in messages %}
-                    <div class="alert alert-success">{{ message }}</div>
+                    <div class="success-notification">
+                        <div class="notification-icon">✓</div>
+                        <div class="notification-text">{{ message }}</div>
+                    </div>
                     {% endfor %}
                 {% endif %}
                 
-                <form method="post" class="form">
+                <form method="post" class="message-form">
                     {% csrf_token %}
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="first_name">First Name *</label>
-                            <input type="text" id="first_name" name="first_name" required>
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="first_name" class="field-label">First Name</label>
+                            <input type="text" id="first_name" name="first_name" class="field-input" required>
                         </div>
-                        <div class="form-group">
-                            <label for="last_name">Last Name *</label>
-                            <input type="text" id="last_name" name="last_name" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
+                        <div class="input-field">
+                            <label for="last_name" class="field-label">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" class="field-input" required>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company">
+                    <div class="input-group">
+                        <div class="input-field">
+                            <label for="email" class="field-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="field-input" required>
+                        </div>
+                        <div class="input-field">
+                            <label for="phone" class="field-label">Phone (Optional)</label>
+                            <input type="tel" id="phone" name="phone" class="field-input">
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="inquiry_type">Inquiry Type</label>
-                        <select id="inquiry_type" name="inquiry_type">
+                    <div class="input-field">
+                        <label for="company" class="field-label">Company/Organization</label>
+                        <input type="text" id="company" name="company" class="field-input">
+                    </div>
+                    
+                    <div class="input-field">
+                        <label for="inquiry_type" class="field-label">How Can I Help?</label>
+                        <select id="inquiry_type" name="inquiry_type" class="field-select">
                             {% for value, label in inquiry_types %}
                             <option value="{{ value }}">{{ label }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required>
+                    <div class="input-field">
+                        <label for="subject" class="field-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="field-input" required>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" rows="6" required></textarea>
+                    <div class="input-field">
+                        <label for="message" class="field-label">Your Message</label>
+                        <textarea id="message" name="message" rows="5" class="field-textarea" required placeholder="Tell me about your financial goals, challenges, or any questions you have..."></textarea>
                     </div>
                     
-                    <button type="submit" class="btn-primary">Send Message</button>
+                    <button type="submit" class="send-message-btn">
+                        <span>Send Message</span>
+                        <div class="btn-icon">→</div>
+                    </button>
                 </form>
             </div>
         </div>

@@ -3,39 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Srinikethan - Financial Coach{% endblock %}</title>
+    <title>{% block title %}Srinikethan - Financial Growth Partner{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/unique-style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="navbar">
+    <!-- Innovative Navigation -->
+    <header class="navigation-hub">
         <div class="container">
-            <div class="nav-brand">
-                <span class="brand-highlight">SRINIKETHAN</span>
+            <div class="nav-identity">
+                <div class="brand-mark">
+                    <span class="initial">S</span>
+                    <span class="brand-text">SRINIKETHAN</span>
+                </div>
             </div>
-            <nav class="nav-menu">
-                <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
-                <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
-                <a href="{% url 'services' %}" class="nav-link {% if request.resolver_match.url_name == 'services' %}active{% endif %}">Services</a>
-                <a href="{% url 'blog' %}" class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog</a>
-                <a href="{% url 'contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+            <nav class="nav-links">
+                <a href="{% url 'home' %}" class="nav-item {% if request.resolver_match.url_name == 'home' %}current{% endif %}">
+                    <span class="item-label">Home</span>
+                </a>
+                <a href="{% url 'about' %}" class="nav-item {% if request.resolver_match.url_name == 'about' %}current{% endif %}">
+                    <span class="item-label">My Story</span>
+                </a>
+                <a href="{% url 'services' %}" class="nav-item {% if request.resolver_match.url_name == 'services' %}current{% endif %}">
+                    <span class="item-label">Expertise</span>
+                </a>
+                <a href="{% url 'blog' %}" class="nav-item {% if request.resolver_match.url_name == 'blog' %}current{% endif %}">
+                    <span class="item-label">Insights</span>
+                </a>
+                <a href="{% url 'contact' %}" class="nav-item {% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
+                    <span class="item-label">Connect</span>
+                </a>
             </nav>
-            <div class="nav-actions">
-                <button class="search-btn">🔍</button>
-                <button class="menu-btn">⋮</button>
+            <div class="nav-utilities">
+                <button class="utility-btn search-toggle">🔍</button>
+                <button class="utility-btn menu-toggle">⋮</button>
             </div>
         </div>
     </header>
 
-    <main>
+    <main class="content-area">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="footer">
+    <!-- Enhanced Footer -->
+    <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Srinikethan. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h4>Srinikethan</h4>
+                    <p>Empowering your financial future through strategic guidance and personalized solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>Quick Links</h5>
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'about' %}">My Story</a>
+                        <a href="{% url 'services' %}">Expertise</a>
+                        <a href="{% url 'contact' %}">Connect</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {{ current_year|default:'2026' }} Srinikethan. Crafted with dedication.</p>
+            </div>
         </div>
     </footer>
 
