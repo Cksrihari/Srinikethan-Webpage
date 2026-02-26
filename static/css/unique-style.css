@@ -123,21 +123,34 @@ body {
 .mobile-sidebar {
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 300px;
+    right: 0;
+    width: 50%;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(159, 122, 234, 0.2);
-    z-index: 1002; /* Higher than navigation */
-    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(
+        135deg,
+        rgba(20, 10, 35, 0.65) 0%,
+        rgba(15, 8, 30, 0.55) 50%,
+        rgba(20, 10, 35, 0.65) 100%
+    );
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border-left: 1px solid rgba(159, 122, 234, 0.25);
+    box-shadow:
+        -8px 0 32px rgba(0, 0, 0, 0.3),
+        inset 1px 0 0 rgba(255, 255, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    z-index: 1002;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
     padding: 6rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
+    transform: translateX(100%);
+    visibility: hidden;
 }
 
 .mobile-sidebar.active {
-    right: 0;
+    transform: translateX(0);
+    visibility: visible;
 }
 
 /* Mobile Close Button */
@@ -2102,7 +2115,7 @@ body {
     /* Welcome Banner Mobile */
     .welcome-banner {
         min-height: 75vh;
-        padding: 5rem 0 1.5rem;
+        padding: 3rem 0 1.5rem;
     }
     
     .banner-content {
@@ -2654,7 +2667,7 @@ body {
     
     /* Mobile Sidebar Adjustments */
     .mobile-sidebar {
-        width: 280px;
+        width: 50%;
         padding: 5rem 1.5rem 2rem;
     }
     
@@ -2716,7 +2729,7 @@ body {
     
     /* Extra small mobile adjustments */
     .mobile-sidebar {
-        width: 100%;
+        width: 70%;
         padding: 4rem 1rem 2rem;
     }
     
