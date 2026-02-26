@@ -1,18 +1,249 @@
 {% extends 'portfolio/base.html' %}
+{% load static %}
 
-{% block title %}Services - Srinikethan{% endblock %}
+{% block title %}Expertise - Srinikethan{% endblock %}
 
 {% block content %}
-<section class="page-header">
+<!-- Expertise Header -->
+<section class="expertise-header">
     <div class="container">
-        <h1>Our Services</h1>
+        <div class="header-content">
+            <span class="expertise-label">Professional Services</span>
+            <h1 class="expertise-title">Wealth Management Expertise</h1>
+            <p class="expertise-intro">Comprehensive financial solutions designed to grow, protect, and preserve your wealth across generations.</p>
+        </div>
     </div>
 </section>
 
-<section class="content-section">
+<!-- Core Services -->
+<section class="core-services">
     <div class="container">
-        <div class="content">
-            <p>Services page content will go here...</p>
+        <div class="section-intro">
+            <h2>Core Wealth Management Services</h2>
+            <p>Strategic financial planning with personalized solutions for your unique goals</p>
+        </div>
+        
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    {% if service.icon %}
+                        {{ service.icon }}
+                    {% else %}
+                        💼
+                    {% endif %}
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <div class="service-features">
+                    <span class="feature-dot">Personalized Strategy</span>
+                    <span class="feature-dot">Ongoing Support</span>
+                    <span class="feature-dot">Proven Results</span>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default Services if none exist -->
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Investment Management</h3>
+                <p>Strategic portfolio construction and management tailored to your risk tolerance and financial objectives.</p>
+                <div class="service-features">
+                    <span class="feature-dot">Asset Allocation</span>
+                    <span class="feature-dot">Risk Assessment</span>
+                    <span class="feature-dot">Performance Monitoring</span>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Financial Planning</h3>
+                <p>Comprehensive financial planning to help you achieve your short-term and long-term financial goals.</p>
+                <div class="service-features">
+                    <span class="feature-dot">Goal Setting</span>
+                    <span class="feature-dot">Cash Flow Analysis</span>
+                    <span class="feature-dot">Strategic Planning</span>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Estate Planning</h3>
+                <p>Protect your legacy and ensure smooth wealth transfer to future generations with strategic estate planning.</p>
+                <div class="service-features">
+                    <span class="feature-dot">Legacy Protection</span>
+                    <span class="feature-dot">Tax Optimization</span>
+                    <span class="feature-dot">Succession Planning</span>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Risk Management</h3>
+                <p>Comprehensive insurance solutions and risk mitigation strategies to protect your wealth and family.</p>
+                <div class="service-features">
+                    <span class="feature-dot">Insurance Analysis</span>
+                    <span class="feature-dot">Risk Assessment</span>
+                    <span class="feature-dot">Protection Strategies</span>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Education Funding</h3>
+                <p>Strategic planning for education expenses with tax-efficient savings and investment strategies.</p>
+                <div class="service-features">
+                    <span class="feature-dot">529 Plans</span>
+                    <span class="feature-dot">Education Savings</span>
+                    <span class="feature-dot">Tax Benefits</span>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🏖️</div>
+                <h3>Retirement Planning</h3>
+                <p>Build a secure retirement with comprehensive strategies for income replacement and lifestyle maintenance.</p>
+                <div class="service-features">
+                    <span class="feature-dot">Income Planning</span>
+                    <span class="feature-dot">401(k) Optimization</span>
+                    <span class="feature-dot">Withdrawal Strategies</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Specialized Services -->
+<section class="specialized-services">
+    <div class="container">
+        <div class="section-header">
+            <h2>Specialized Wealth Solutions</h2>
+            <p>Advanced strategies for high-net-worth individuals and complex financial situations</p>
+        </div>
+        
+        <div class="specialties-grid">
+            <div class="specialty-card">
+                <div class="specialty-icon">🏢</div>
+                <h4>Business Succession Planning</h4>
+                <p>Strategic planning for business owners to ensure smooth transition and maximize value transfer.</p>
+                <ul class="specialty-benefits">
+                    <li>Exit Strategy Development</li>
+                    <li>Valuation Services</li>
+                    <li>Tax Optimization</li>
+                    <li>Family Business Transition</li>
+                </ul>
+            </div>
+            
+            <div class="specialty-card">
+                <div class="specialty-icon">💎</div>
+                <h4>High Net Worth Services</h4>
+                <p>Exclusive wealth management services for affluent families with complex financial needs.</p>
+                <ul class="specialty-benefits">
+                    <li>Private Banking Solutions</li>
+                    <li>Alternative Investments</li>
+                    <li>Family Office Services</li>
+                    <li>Philanthropic Planning</li>
+                </ul>
+            </div>
+            
+            <div class="specialty-card">
+                <div class="specialty-icon">🌍</div>
+                <h4>International Wealth</h4>
+                <p>Cross-border wealth management for global families and international business interests.</p>
+                <ul class="specialty-benefits">
+                    <li>Multi-Currency Planning</li>
+                    <li>Tax Treaty Benefits</li>
+                    <li>Foreign Asset Reporting</li>
+                    <li>Global Investment Access</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Programs/Workshops -->
+{% if programs %}
+<section class="wealth-programs">
+    <div class="container">
+        <div class="programs-header">
+            <h2>Educational Programs</h2>
+            <p>Enhance your financial knowledge with our comprehensive educational offerings</p>
+        </div>
+        
+        <div class="programs-showcase">
+            {% for program in programs %}
+            <div class="program-card {% if program.is_featured %}featured{% endif %}">
+                <div class="program-header">
+                    <h3>{{ program.name }}</h3>
+                    {% if program.duration %}
+                    <span class="program-duration">{{ program.duration }}</span>
+                    {% endif %}
+                </div>
+                <div class="program-description">
+                    <p>{{ program.description }}</p>
+                </div>
+                {% if program.price %}
+                <div class="program-pricing">
+                    <span class="price-label">Investment:</span>
+                    <span class="price-amount">${{ program.price }}</span>
+                </div>
+                {% endif %}
+                <div class="program-action">
+                    <a href="{% url 'contact' %}" class="program-btn">Learn More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Process Section -->
+<section class="wealth-process">
+    <div class="container">
+        <div class="process-header">
+            <h2>Our Wealth Management Process</h2>
+            <p>A systematic approach to building and preserving your wealth</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h4>Discovery & Assessment</h4>
+                <p>Comprehensive analysis of your current financial situation, goals, and risk tolerance.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h4>Strategic Planning</h4>
+                <p>Development of a personalized wealth management strategy aligned with your objectives.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h4>Implementation</h4>
+                <p>Execution of your financial plan with careful attention to timing and market conditions.</p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h4>Monitoring & Review</h4>
+                <p>Ongoing oversight and regular adjustments to ensure your plan stays on track.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="expertise-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Financial Future?</h2>
+            <p>Schedule a confidential consultation to discuss your wealth management needs and discover how we can help you achieve your financial goals.</p>
+            <div class="cta-actions">
+                <a href="{% url 'contact' %}" class="primary-cta">Schedule Consultation</a>
+                <a href="{% url 'about' %}" class="secondary-cta">Learn About Our Approach</a>
+            </div>
         </div>
     </div>
 </section>

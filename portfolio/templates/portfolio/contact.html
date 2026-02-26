@@ -3,83 +3,11 @@
 {% block title %}Connect - {{ settings.site_title }}{% endblock %}
 
 {% block content %}
-<!-- Connection Gateway -->
-<section class="connection-gateway">
-    <div class="container">
-        <div class="gateway-content">
-            <div class="gateway-header">
-                <span class="connection-label">Let's Connect</span>
-                <h1 class="gateway-title">Start Your Financial Transformation</h1>
-                <p class="gateway-description">Ready to take control of your financial future? I'm here to guide you every step of the way.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Communication Hub -->
 <section class="communication-hub">
     <div class="container">
         <div class="hub-layout">
-            <!-- Connection Methods -->
-            <div class="connection-methods">
-                <h3 class="methods-title">Ways to Reach Me</h3>
-                
-                {% if settings.contact_email %}
-                <div class="method-card">
-                    <div class="method-icon">📧</div>
-                    <div class="method-details">
-                        <h4>Email Consultation</h4>
-                        <p>Get detailed responses to your financial questions</p>
-                        <a href="mailto:{{ settings.contact_email }}" class="method-link">{{ settings.contact_email }}</a>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if settings.contact_phone %}
-                <div class="method-card">
-                    <div class="method-icon">📱</div>
-                    <div class="method-details">
-                        <h4>Direct Call</h4>
-                        <p>Schedule a personalized phone consultation</p>
-                        <a href="tel:{{ settings.contact_phone }}" class="method-link">{{ settings.contact_phone }}</a>
-                    </div>
-                </div>
-                {% endif %}
-                
-                {% if settings.contact_address %}
-                <div class="method-card">
-                    <div class="method-icon">📍</div>
-                    <div class="method-details">
-                        <h4>Office Location</h4>
-                        <p>Visit for in-person financial planning sessions</p>
-                        <div class="address-text">{{ settings.contact_address|linebreaksbr }}</div>
-                    </div>
-                </div>
-                {% endif %}
-                
-                <!-- Social Connections -->
-                <div class="social-connections">
-                    <h4>Connect on Social Media</h4>
-                    <div class="social-grid">
-                        {% if settings.linkedin_url %}
-                        <a href="{{ settings.linkedin_url }}" target="_blank" class="social-btn linkedin">
-                            <span>LinkedIn</span>
-                        </a>
-                        {% endif %}
-                        {% if settings.twitter_url %}
-                        <a href="{{ settings.twitter_url }}" target="_blank" class="social-btn twitter">
-                            <span>Twitter</span>
-                        </a>
-                        {% endif %}
-                        {% if settings.facebook_url %}
-                        <a href="{{ settings.facebook_url }}" target="_blank" class="social-btn facebook">
-                            <span>Facebook</span>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            
             <!-- Message Portal -->
             <div class="message-portal">
                 <div class="portal-header">
@@ -121,25 +49,6 @@
                     </div>
                     
                     <div class="input-field">
-                        <label for="company" class="field-label">Company/Organization</label>
-                        <input type="text" id="company" name="company" class="field-input">
-                    </div>
-                    
-                    <div class="input-field">
-                        <label for="inquiry_type" class="field-label">How Can I Help?</label>
-                        <select id="inquiry_type" name="inquiry_type" class="field-select">
-                            {% for value, label in inquiry_types %}
-                            <option value="{{ value }}">{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    
-                    <div class="input-field">
-                        <label for="subject" class="field-label">Subject</label>
-                        <input type="text" id="subject" name="subject" class="field-input" required>
-                    </div>
-                    
-                    <div class="input-field">
                         <label for="message" class="field-label">Your Message</label>
                         <textarea id="message" name="message" rows="5" class="field-textarea" required placeholder="Tell me about your financial goals, challenges, or any questions you have..."></textarea>
                     </div>
@@ -149,6 +58,69 @@
                         <div class="btn-icon">→</div>
                     </button>
                 </form>
+            </div>
+            
+            <!-- Connection Methods -->
+            <div class="connection-methods">
+                <div class="gateway-header">
+                    <span class="connection-label">Let's Connect</span>
+                    <h1 class="gateway-title">Start Your Financial Transformation</h1>
+                    <p class="gateway-description">Ready to take control of your financial future? I'm here to guide you every step of the way.</p>
+                </div>
+                                
+                {% if settings.contact_email %}
+                <div class="method-card">
+                    <div class="method-icon">📧</div>
+                    <div class="method-details">
+                        <h4>Email Consultation</h4>
+                        <p>Get detailed responses to your financial questions</p>
+                        <a href="mailto:{{ settings.contact_email }}" class="method-link">{{ settings.contact_email }}</a>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if settings.contact_phone %}
+                <div class="method-card">
+                    <div class="method-icon">📱</div>
+                    <div class="method-details">
+                        <h4>Direct Call</h4>
+                        <p>Schedule a personalized phone consultation</p>
+                        <a href="tel:{{ settings.contact_phone }}" class="method-link">{{ settings.contact_phone }}</a>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if settings.contact_address %}
+                <div class="method-card">
+                    <div class="method-icon">📍</div>
+                    <div class="method-details">
+                        <h4>Office Location</h4>
+                        <p>Visit for in-person financial planning sessions</p>
+                        <div class="address-text">{{ settings.contact_address|linebreaksbr }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Social Connections -->
+                <div class="social-connections">
+                    <div class="social-grid">
+                        {% if settings.linkedin_url %}
+                        <a href="{{ settings.linkedin_url }}" target="_blank" class="social-btn linkedin">
+                            <span>LinkedIn</span>
+                        </a>
+                        {% endif %}
+                        {% if settings.twitter_url %}
+                        <a href="{{ settings.twitter_url }}" target="_blank" class="social-btn twitter">
+                            <span>Twitter</span>
+                        </a>
+                        {% endif %}
+                        {% if settings.facebook_url %}
+                        <a href="{{ settings.facebook_url }}" target="_blank" class="social-btn facebook">
+                            <span>Facebook</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

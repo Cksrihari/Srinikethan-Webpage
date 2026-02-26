@@ -1,15 +1,15 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}My Story - Srinikethan{% endblock %}
+{% block title %}{{ mystory.page_title }} - Srinikethan{% endblock %}
 
 {% block content %}
 <!-- Personal Journey Header -->
 <section class="journey-header">
     <div class="container">
         <div class="header-content">
-            <span class="journey-label">My Story</span>
-            <h1 class="journey-title">The Path to Financial Empowerment</h1>
-            <p class="journey-intro">Every expert was once a beginner. Here's how my passion for financial growth became a mission to transform lives.</p>
+            <span class="journey-label">{{ mystory.page_title }}</span>
+            <h1 class="journey-title">{{ mystory.page_subtitle }}</h1>
+            <p class="journey-intro">{{ mystory.intro_text }}</p>
         </div>
     </div>
 </section>
@@ -19,19 +19,28 @@
     <div class="container">
         <div class="chapters-grid">
             <div class="chapter-card">
-                <div class="chapter-number">01</div>
-                <h3>The Beginning</h3>
-                <p>My journey started with a simple question: "How can I help people achieve financial freedom?" This curiosity led me down a path of continuous learning and real-world experience.</p>
+                <div class="chapter-number">{{ mystory.chapter_1_number }}</div>
+                <h3>{{ mystory.chapter_1_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_1_period }}</span>
+                <p>{{ mystory.chapter_1_content }}</p>
             </div>
             <div class="chapter-card">
-                <div class="chapter-number">02</div>
-                <h3>The Learning Phase</h3>
-                <p>Years of studying markets, understanding behavioral economics, and witnessing the impact of sound financial decisions shaped my approach to personalized financial coaching.</p>
+                <div class="chapter-number">{{ mystory.chapter_2_number }}</div>
+                <h3>{{ mystory.chapter_2_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_2_period }}</span>
+                <p>{{ mystory.chapter_2_content }}</p>
             </div>
             <div class="chapter-card">
-                <div class="chapter-number">03</div>
-                <h3>The Mission</h3>
-                <p>Today, I dedicate my expertise to helping individuals and families build sustainable wealth through strategic planning, mindful investing, and disciplined financial habits.</p>
+                <div class="chapter-number">{{ mystory.chapter_3_number }}</div>
+                <h3>{{ mystory.chapter_3_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_3_period }}</span>
+                <p>{{ mystory.chapter_3_content }}</p>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-number">{{ mystory.chapter_4_number }}</div>
+                <h3>{{ mystory.chapter_4_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_4_period }}</span>
+                <p>{{ mystory.chapter_4_content }}</p>
             </div>
         </div>
     </div>
@@ -41,29 +50,12 @@
 <section class="values-section">
     <div class="container">
         <div class="section-header">
-            <h2>What Drives Me</h2>
-            <p>The principles that guide every interaction and decision</p>
+            <h2>{{ mystory.mission_title }}</h2>
+            <p>{{ mystory.mission_text }}</p>
         </div>
-        <div class="values-grid">
-            <div class="value-item">
-                <div class="value-icon">🎯</div>
-                <h4>Purposeful Planning</h4>
-                <p>Every financial decision should align with your life goals and values, creating a meaningful path forward.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-icon">🤝</div>
-                <h4>Trust & Transparency</h4>
-                <p>Open communication and honest advice form the foundation of successful financial partnerships.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-icon">📈</div>
-                <h4>Continuous Growth</h4>
-                <p>Both personal and financial growth require constant learning, adaptation, and commitment to excellence.</p>
-            </div>
-            <div class="value-item">
-                <div class="value-icon">⚖️</div>
-                <h4>Balanced Perspective</h4>
-                <p>True wealth encompasses financial security, personal fulfillment, and the ability to impact others positively.</p>
+        <div class="personal-note">
+            <div class="note-content">
+                <p>{{ mystory.personal_note }}</p>
             </div>
         </div>
     </div>

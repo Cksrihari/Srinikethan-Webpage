@@ -1,0 +1,172 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ insights.page_title }} - {{ settings.site_title }}{% endblock %}
+
+{% block content %}
+<!-- Insights Hero Section -->
+<section class="insights-hero">
+    <div class="container">
+        <div class="hero-content">
+            <span class="insights-label">{{ insights.page_title }}</span>
+            <h1 class="insights-title">{{ insights.hero_title }}</h1>
+            <p class="insights-description">{{ insights.hero_description }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Insight -->
+<section class="featured-insight">
+    <div class="container">
+        <div class="insight-layout">
+            <div class="insight-image">
+                <div class="insight-img-placeholder">
+                    📊
+                </div>
+            </div>
+            <div class="insight-content">
+                <span class="insight-category">Featured Analysis</span>
+                <h2 class="insight-title">{{ insights.featured_title }}</h2>
+                <p class="insight-excerpt">{{ insights.featured_excerpt }}</p>
+                <div class="insight-meta">
+                    <span class="insight-date">{{ insights.updated_at|date:"F d, Y" }}</span>
+                    <span class="insight-read-time">5 min read</span>
+                </div>
+                <div class="insight-actions">
+                    <button class="read-more-btn" onclick="toggleFullContent()">
+                        <span>Read Full Analysis</span>
+                        <div class="btn-icon">→</div>
+                    </button>
+                </div>
+                <div class="full-content" id="fullContent" style="display: none;">
+                    <div class="content-text">{{ insights.featured_content|linebreaksbr }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Insights -->
+<section class="quick-insights">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">{{ insights.quick_insights_title }}</h2>
+            <p class="section-subtitle">Actionable insights to enhance your financial strategy</p>
+        </div>
+        
+        <div class="insights-grid">
+            <div class="insight-card">
+                <div class="card-icon">💼</div>
+                <h3 class="card-title">{{ insights.insight_1_title }}</h3>
+                <p class="card-content">{{ insights.insight_1_content }}</p>
+            </div>
+            
+            <div class="insight-card">
+                <div class="card-icon">📈</div>
+                <h3 class="card-title">{{ insights.insight_2_title }}</h3>
+                <p class="card-content">{{ insights.insight_2_content }}</p>
+            </div>
+            
+            <div class="insight-card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">{{ insights.insight_3_title }}</h3>
+                <p class="card-content">{{ insights.insight_3_content }}</p>
+            </div>
+            
+            <div class="insight-card">
+                <div class="card-icon">🛡️</div>
+                <h3 class="card-title">{{ insights.insight_4_title }}</h3>
+                <p class="card-content">{{ insights.insight_4_content }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest Blog Posts -->
+{% if latest_posts %}
+<section class="related-insights">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest Articles</h2>
+            <p class="section-subtitle">Stay informed with our newest insights and analysis</p>
+        </div>
+        
+        <div class="articles-grid">
+            {% for post in latest_posts %}
+            <article class="article-card">
+                <div class="article-image">
+                    {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    {% else %}
+                        <div class="article-placeholder">📰</div>
+                    {% endif %}
+                </div>
+                <div class="article-content">
+                    <span class="article-date">{{ post.published_at|date:"M d, Y" }}</span>
+                    <h3 class="article-title">{{ post.title }}</h3>
+                    <p class="article-excerpt">{{ post.excerpt }}</p>
+                    <a href="{% url 'blog_detail' post.slug %}" class="read-article-btn">
+                        <span>Read More</span>
+                        <div class="btn-icon">→</div>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Newsletter Section -->
+<section class="insights-newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="newsletter-info">
+                <h2 class="newsletter-title">{{ insights.newsletter_title }}</h2>
+                <p class="newsletter-description">{{ insights.newsletter_description }}</p>
+            </div>
+            <div class="newsletter-form">
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Enter your email address" class="email-input" required>
+                    <button type="submit" class="subscribe-btn">
+                        <span>Subscribe</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="insights-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">{{ insights.cta_title }}</h2>
+            <p class="cta-description">{{ insights.cta_description }}</p>
+            <div class="cta-actions">
+                <a href="{{ insights.cta_button_url }}" class="cta-btn primary">
+                    <span>{{ insights.cta_button_text }}</span>
+                    <div class="btn-icon">→</div>
+                </a>
+                <a href="{% url 'services' %}" class="cta-btn secondary">
+                    <span>View Services</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function toggleFullContent() {
+    const fullContent = document.getElementById('fullContent');
+    const readMoreBtn = document.querySelector('.read-more-btn span');
+    
+    if (fullContent.style.display === 'none') {
+        fullContent.style.display = 'block';
+        readMoreBtn.textContent = 'Show Less';
+    } else {
+        fullContent.style.display = 'none';
+        readMoreBtn.textContent = 'Read Full Analysis';
+    }
+}
+</script>
+{% endblock %}

@@ -7,18 +7,22 @@
     <div class="container">
         <div class="banner-content">
             <div class="floating-image">
+                {% if homepage.profile_photo %}
+                <img src="{{ homepage.profile_photo.url }}" alt="Srinikethan" class="profile-photo">
+                {% else %}
                 <img src="{% static 'img/edited-photo.png' %}" alt="Srinikethan" class="profile-photo">
+                {% endif %}
                 <div class="photo-backdrop"></div>
             </div>
             <div class="intro-text">
                 <span class="greeting">Hi, I'm</span>
-                <h1 class="main-title">{{ settings.hero_title|default:'Srinikethan' }}</h1>
+                <h1 class="main-title">{{ homepage.welcome_title }}</h1>
                 <div class="tagline-wrapper">
-                    <p class="dynamic-tagline">{{ settings.hero_subtitle|default:'Your Financial Growth Partner' }}</p>
+                    <p class="dynamic-tagline">{{ homepage.welcome_subtitle }}</p>
                 </div>
                 <div class="action-buttons">
-                    <a href="#expertise" class="explore-btn">Discover My Expertise</a>
-                    <a href="{% url 'contact' %}" class="connect-btn">Let's Connect</a>
+                    <a href="{{ homepage.secondary_cta_url }}" class="explore-btn">{{ homepage.secondary_cta_text }}</a>
+                    <a href="{{ homepage.primary_cta_url }}" class="connect-btn">{{ homepage.primary_cta_text }}</a>
                 </div>
             </div>
         </div>
@@ -35,25 +39,25 @@
         <div class="philosophy-grid">
             <div class="mission-card">
                 <div class="card-number">01</div>
-                <h3>My Philosophy</h3>
+                <h3>{{ homepage.philosophy_title }}</h3>
                 <div class="mission-content">
-                    {{ settings.about_content|default:'Empowering individuals to achieve financial independence through personalized guidance and strategic planning.'|linebreaksbr }}
+                    {{ homepage.philosophy_subtitle|linebreaksbr }}
                 </div>
             </div>
             <div class="vision-highlights">
                 <div class="highlight-item">
                     <div class="icon-wrapper">🎯</div>
-                    <h4>Strategic Focus</h4>
+                    <h4>{{ homepage.philosophy_highlight_1 }}</h4>
                     <p>Tailored financial roadmaps for sustainable growth</p>
                 </div>
                 <div class="highlight-item">
                     <div class="icon-wrapper">🚀</div>
-                    <h4>Growth Mindset</h4>
+                    <h4>{{ homepage.philosophy_highlight_2 }}</h4>
                     <p>Transforming financial challenges into opportunities</p>
                 </div>
                 <div class="highlight-item">
                     <div class="icon-wrapper">🤝</div>
-                    <h4>Partnership Approach</h4>
+                    <h4>{{ homepage.philosophy_highlight_3 }}</h4>
                     <p>Walking alongside you on your financial journey</p>
                 </div>
             </div>
@@ -66,8 +70,8 @@
     <div class="container">
         <div class="section-intro">
             <span class="section-label">What I Offer</span>
-            <h2 class="section-title">Areas of Expertise</h2>
-            <p class="section-description">Comprehensive financial solutions designed around your unique goals</p>
+            <h2 class="section-title">{{ homepage.expertise_title }}</h2>
+            <p class="section-description">{{ homepage.expertise_subtitle }}</p>
         </div>
         <div class="expertise-carousel">
             {% for service in services %}
@@ -139,8 +143,8 @@
 <section class="success-stories">
     <div class="container">
         <div class="stories-header">
-            <h2 class="stories-title">Success Stories</h2>
-            <p class="stories-subtitle">Real transformations, real results</p>
+            <h2 class="stories-title">{{ homepage.success_stories_title }}</h2>
+            <p class="stories-subtitle">{{ homepage.success_stories_subtitle }}</p>
         </div>
         <div class="stories-showcase">
             {% for testimonial in testimonials %}
@@ -182,8 +186,8 @@
         <div class="hub-header">
             <div class="header-left">
                 <span class="hub-label">Stay Informed</span>
-                <h2 class="hub-title">Latest Insights</h2>
-                <p class="hub-description">Financial wisdom and market perspectives to guide your decisions</p>
+                <h2 class="hub-title">{{ homepage.knowledge_hub_title }}</h2>
+                <p class="hub-description">{{ homepage.knowledge_hub_subtitle }}</p>
             </div>
             <div class="header-right">
                 <a href="{% url 'blog' %}" class="view-all-btn">Explore All Articles</a>

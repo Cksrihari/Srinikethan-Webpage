@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.shortcuts import redirect
-from .models import SiteSettings, Service, Program, BlogPost, Contact, Testimonial, Workshop
+from .models import SiteSettings, Service, Program, BlogPost, Contact, Testimonial, Workshop, HomePage, MyStory, InsightsPage
 
 def get_site_settings():
     """Get or create site settings"""
@@ -19,8 +19,24 @@ My journey began with personal financial setbacks that taught me the value of in
     )
     return settings
 
+def get_homepage_content():
+    """Get or create homepage content"""
+    homepage, created = HomePage.objects.get_or_create(pk=1)
+    return homepage
+
+def get_mystory_content():
+    """Get or create my story content"""
+    mystory, created = MyStory.objects.get_or_create(pk=1)
+    return mystory
+
+def get_insights_content():
+    """Get or create insights page content"""
+    insights, created = InsightsPage.objects.get_or_create(pk=1)
+    return insights
+
 def home(request):
     settings = get_site_settings()
+    homepage = get_homepage_content()
     services = Service.objects.filter(is_active=True).order_by('order', 'title')
     programs = Program.objects.filter(is_active=True).order_by('order', 'name')
     testimonials = Testimonial.objects.filter(is_active=True, is_featured=True)[:3]
@@ -28,6 +44,7 @@ def home(request):
     
     context = {
         'settings': settings,
+        'homepage': homepage,
         'services': services,
         'programs': programs,
         'testimonials': testimonials,
@@ -37,10 +54,12 @@ def home(request):
 
 def about(request):
     settings = get_site_settings()
+    mystory = get_mystory_content()
     testimonials = Testimonial.objects.filter(is_active=True)[:6]
     
     context = {
         'settings': settings,
+        'mystory': mystory,
         'testimonials': testimonials,
     }
     return render(request, 'portfolio/about.html', context)
@@ -58,6 +77,18 @@ def services(request):
         'workshops': workshops,
     }
     return render(request, 'portfolio/services.html', context)
+
+def insights(request):
+    settings = get_site_settings()
+    insights_content = get_insights_content()
+    latest_posts = BlogPost.objects.filter(is_published=True)[:4]
+    
+    context = {
+        'settings': settings,
+        'insights': insights_content,
+        'latest_posts': latest_posts,
+    }
+    return render(request, 'portfolio/insights.html', context)
 
 def blog(request):
     settings = get_site_settings()

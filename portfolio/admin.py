@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.safestring import mark_safe
-from .models import SiteSettings, Service, Program, BlogPost, Contact, Testimonial, Workshop
+from .models import SiteSettings, Service, Program, BlogPost, Contact, Testimonial, Workshop, HomePage, MyStory, InsightsPage
 
 # Custom admin site configuration
 admin.site.site_header = "Srinikethan Admin"
@@ -163,3 +163,151 @@ class WorkshopAdmin(admin.ModelAdmin):
             'fields': ('is_active',)
         }),
     )
+
+@admin.register(HomePage)
+class HomePageAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Welcome Banner', {
+            'fields': ('welcome_title', 'welcome_subtitle', 'profile_photo')
+        }),
+        ('Philosophy Section', {
+            'fields': (
+                'philosophy_title', 
+                'philosophy_subtitle',
+                'philosophy_highlight_1',
+                'philosophy_highlight_2', 
+                'philosophy_highlight_3',
+                'philosophy_highlight_4'
+            )
+        }),
+        ('Section Titles', {
+            'fields': (
+                'expertise_title',
+                'expertise_subtitle',
+                'success_stories_title',
+                'success_stories_subtitle',
+                'knowledge_hub_title',
+                'knowledge_hub_subtitle'
+            ),
+            'classes': ('collapse',)
+        }),
+        ('Call-to-Action Buttons', {
+            'fields': (
+                'primary_cta_text',
+                'primary_cta_url',
+                'secondary_cta_text', 
+                'secondary_cta_url'
+            ),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    readonly_fields = ['updated_at']
+    
+    def has_add_permission(self, request):
+        return not HomePage.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        # Allow deletion only if there are multiple instances
+        return HomePage.objects.count() > 1
+
+@admin.register(MyStory)
+class MyStoryAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Page Header', {
+            'fields': ('page_title', 'page_subtitle', 'intro_text')
+        }),
+        ('Chapter 1', {
+            'fields': (
+                'chapter_1_number',
+                'chapter_1_title', 
+                'chapter_1_period',
+                'chapter_1_content'
+            )
+        }),
+        ('Chapter 2', {
+            'fields': (
+                'chapter_2_number',
+                'chapter_2_title',
+                'chapter_2_period', 
+                'chapter_2_content'
+            )
+        }),
+        ('Chapter 3', {
+            'fields': (
+                'chapter_3_number',
+                'chapter_3_title',
+                'chapter_3_period',
+                'chapter_3_content'
+            )
+        }),
+        ('Chapter 4', {
+            'fields': (
+                'chapter_4_number',
+                'chapter_4_title',
+                'chapter_4_period',
+                'chapter_4_content'
+            )
+        }),
+        ('Mission & Personal', {
+            'fields': ('mission_title', 'mission_text', 'personal_note')
+        }),
+    )
+    
+    readonly_fields = ['updated_at']
+    
+    def has_add_permission(self, request):
+        return not MyStory.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        # Allow deletion only if there are multiple instances
+        return MyStory.objects.count() > 1
+
+@admin.register(InsightsPage)
+class InsightsPageAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Page Header', {
+            'fields': ('page_title', 'page_subtitle')
+        }),
+        ('Hero Section', {
+            'fields': ('hero_title', 'hero_description')
+        }),
+        ('Featured Insight', {
+            'fields': (
+                'featured_title',
+                'featured_excerpt', 
+                'featured_content',
+                'featured_image_alt'
+            )
+        }),
+        ('Quick Insights', {
+            'fields': (
+                'quick_insights_title',
+                'insight_1_title',
+                'insight_1_content',
+                'insight_2_title', 
+                'insight_2_content',
+                'insight_3_title',
+                'insight_3_content',
+                'insight_4_title',
+                'insight_4_content'
+            )
+        }),
+        ('Newsletter Section', {
+            'fields': ('newsletter_title', 'newsletter_description'),
+            'classes': ('collapse',)
+        }),
+        ('Call to Action', {
+            'fields': ('cta_title', 'cta_description', 'cta_button_text', 'cta_button_url'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    readonly_fields = ['updated_at']
+    
+    def has_add_permission(self, request):
+        return not InsightsPage.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        # Allow deletion only if there are multiple instances
+        return InsightsPage.objects.count() > 1

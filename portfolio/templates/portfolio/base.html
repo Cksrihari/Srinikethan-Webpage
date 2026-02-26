@@ -14,8 +14,7 @@
         <div class="container">
             <div class="nav-identity">
                 <div class="brand-mark">
-                    <span class="initial">S</span>
-                    <span class="brand-text">SRINIKETHAN</span>
+                    <span class="brand-text">SRINIKETHAN C K</span>
                 </div>
             </div>
             <nav class="nav-links">
@@ -35,12 +34,40 @@
                     <span class="item-label">Connect</span>
                 </a>
             </nav>
-            <div class="nav-utilities">
-                <button class="utility-btn search-toggle">🔍</button>
-                <button class="utility-btn menu-toggle">⋮</button>
-            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-sidebar" id="mobileSidebar">
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close mobile menu">
+            <span>&times;</span>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="{% url 'home' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'home' %}current{% endif %}">
+                Home
+            </a>
+            <a href="{% url 'about' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'about' %}current{% endif %}">
+                My Story
+            </a>
+            <a href="{% url 'services' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'services' %}current{% endif %}">
+                Expertise
+            </a>
+            <a href="{% url 'blog' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'blog' %}current{% endif %}">
+                Insights
+            </a>
+            <a href="{% url 'contact' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
+                Connect
+            </a>
+        </div>
+    </nav>
 
     <main class="content-area">
         {% block content %}
