@@ -1,0 +1,138 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">{{ settings.hero_title }}</h1>
+                {% if settings.hero_subtitle %}
+                <p class="hero-subtitle">{{ settings.hero_subtitle }}</p>
+                {% endif %}
+                <div class="hero-cta">
+                    <button class="btn-primary">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{% static 'img/edited-photo.png' %}" alt="Srinikethan" class="hero-img">
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-header">
+                <h2>About Me</h2>
+                <h3>{{ settings.about_title }}</h3>
+            </div>
+            <div class="about-text">
+                {{ settings.about_content|linebreaksbr }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services-section">
+    <div class="container">
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                {% if service.icon %}
+                <div class="service-icon">{{ service.icon }}</div>
+                {% endif %}
+                <h4>{{ service.title }}</h4>
+                <p>{{ service.description|truncatewords:20 }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="programs-section">
+    <div class="container">
+        <div class="section-header">
+            <h2><span class="highlight">OUR</span><br>Signature Programs</h2>
+        </div>
+        <div class="programs-grid">
+            {% for program in programs %}
+            <div class="program-card">
+                <h4>{{ program.name }}</h4>
+                <p>{{ program.description }}</p>
+                {% if program.duration %}
+                <span class="program-duration">{{ program.duration }}</span>
+                {% endif %}
+                {% if program.price %}
+                <span class="program-price">₹{{ program.price }}</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% if testimonials %}
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>What Clients Say</h2>
+        </div>
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"{{ testimonial.content }}"</p>
+                </div>
+                <div class="testimonial-author">
+                    {% if testimonial.photo %}
+                    <img src="{{ testimonial.photo.url }}" alt="{{ testimonial.name }}" class="author-photo">
+                    {% endif %}
+                    <div class="author-info">
+                        <h5>{{ testimonial.name }}</h5>
+                        {% if testimonial.position and testimonial.company %}
+                        <p>{{ testimonial.position }}, {{ testimonial.company }}</p>
+                        {% elif testimonial.company %}
+                        <p>{{ testimonial.company }}</p>
+                        {% elif testimonial.position %}
+                        <p>{{ testimonial.position }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if latest_posts %}
+<section class="blog-preview-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest Insights</h2>
+            <a href="{% url 'blog' %}" class="btn-secondary">View All Posts</a>
+        </div>
+        <div class="blog-preview-grid">
+            {% for post in latest_posts %}
+            <div class="blog-card">
+                {% if post.featured_image %}
+                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="blog-image">
+                {% endif %}
+                <div class="blog-content">
+                    <h4><a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a></h4>
+                    <p>{{ post.excerpt }}</p>
+                    <span class="blog-date">{{ post.published_at|date:"F j, Y" }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
