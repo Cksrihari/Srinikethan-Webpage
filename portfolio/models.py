@@ -31,12 +31,6 @@ class SiteSettings(models.Model):
 
 class HomePage(models.Model):
     """Model for homepage content that can be updated through admin"""
-
-    welcome_label = models.CharField(
-        max_length=50,
-        default="Hi, I'm",
-        help_text="Small greeting label shown in the hero section"
-    )
     
     # Welcome Banner Section
     welcome_title = models.CharField(
@@ -81,26 +75,6 @@ class HomePage(models.Model):
         default="Comprehensive financial solutions tailored to your unique goals and circumstances.",
         help_text="Subtitle for expertise section"
     )
-    expertise_label = models.CharField(
-        max_length=100,
-        default="What I Offer",
-        help_text="Small label above the expertise section title"
-    )
-    journeys_label = models.CharField(
-        max_length=100,
-        default="Transform Your Future",
-        help_text="Label above the financial journeys section"
-    )
-    journeys_title = models.CharField(
-        max_length=200,
-        default="Financial Growth Journeys",
-        help_text="Title for the financial journeys section"
-    )
-    journeys_subtitle = models.CharField(
-        max_length=300,
-        default="Choose the path that aligns with your aspirations and timeline",
-        help_text="Subtitle for the financial journeys section"
-    )
     
     # Success Stories Section
     success_stories_title = models.CharField(
@@ -123,22 +97,12 @@ class HomePage(models.Model):
         default="Latest insights, strategies, and market perspectives to keep you informed.",
         help_text="Subtitle for knowledge hub section"
     )
-    knowledge_hub_label = models.CharField(
-        max_length=100,
-        default="Stay Informed",
-        help_text="Label shown above the knowledge hub section title"
-    )
     
     # CTA Buttons
     primary_cta_text = models.CharField(max_length=50, default="Start Your Journey")
     primary_cta_url = models.CharField(max_length=200, default="/contact/")
     secondary_cta_text = models.CharField(max_length=50, default="Explore Expertise")
     secondary_cta_url = models.CharField(max_length=200, default="#expertise")
-    scroll_prompt_text = models.CharField(
-        max_length=50,
-        default="Explore Journey",
-        help_text="Prompt shown below the hero section"
-    )
     
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -291,11 +255,6 @@ class InsightsPage(models.Model):
         default="Quick Market Insights",
         help_text="Title for quick insights section"
     )
-    quick_insights_subtitle = models.CharField(
-        max_length=200,
-        default="Actionable insights to enhance your financial strategy",
-        help_text="Subtitle for quick insights section"
-    )
     
     # Insight 1
     insight_1_title = models.CharField(
@@ -351,16 +310,6 @@ class InsightsPage(models.Model):
         default="Get weekly insights delivered to your inbox. Market analysis, investment tips, and exclusive strategies.",
         help_text="Newsletter signup description"
     )
-    latest_articles_title = models.CharField(
-        max_length=200,
-        default="Latest Articles",
-        help_text="Title for the latest articles section"
-    )
-    latest_articles_subtitle = models.CharField(
-        max_length=250,
-        default="Stay informed with our newest insights and analysis",
-        help_text="Subtitle for the latest articles section"
-    )
     
     # CTA Section
     cta_title = models.CharField(
@@ -396,156 +345,6 @@ class InsightsPage(models.Model):
         # Ensure only one instance exists
         if not self.pk and InsightsPage.objects.exists():
             raise ValueError("Only one InsightsPage instance is allowed")
-        return super().save(*args, **kwargs)
-
-class ServicesPage(models.Model):
-    """Model for services page content that can be updated through admin"""
-
-    page_label = models.CharField(
-        max_length=100,
-        default="Professional Services",
-        help_text="Label shown above the page title"
-    )
-    page_title = models.CharField(
-        max_length=200,
-        default="Wealth Management Expertise",
-        help_text="Main page title"
-    )
-    page_subtitle = models.TextField(
-        default="Comprehensive financial solutions designed to grow, protect, and preserve your wealth across generations.",
-        help_text="Page subtitle/introduction"
-    )
-    core_services_title = models.CharField(
-        max_length=200,
-        default="Core Wealth Management Services",
-        help_text="Title for the core services section"
-    )
-    core_services_subtitle = models.CharField(
-        max_length=250,
-        default="Strategic financial planning with personalized solutions for your unique goals",
-        help_text="Subtitle for the core services section"
-    )
-    specialized_title = models.CharField(
-        max_length=200,
-        default="Specialized Wealth Solutions",
-        help_text="Title for the specialized services section"
-    )
-    specialized_subtitle = models.CharField(
-        max_length=250,
-        default="Advanced strategies for high-net-worth individuals and complex financial situations",
-        help_text="Subtitle for the specialized services section"
-    )
-    process_title = models.CharField(
-        max_length=200,
-        default="Our Wealth Management Process",
-        help_text="Title for the process section"
-    )
-    process_subtitle = models.CharField(
-        max_length=250,
-        default="A systematic approach to building and preserving your wealth",
-        help_text="Subtitle for the process section"
-    )
-    cta_title = models.CharField(
-        max_length=200,
-        default="Ready to Transform Your Financial Future?",
-        help_text="Call to action title"
-    )
-    cta_description = models.TextField(
-        default="Schedule a confidential consultation to discuss your wealth management needs and discover how we can help you achieve your financial goals.",
-        help_text="Call to action description"
-    )
-    cta_primary_text = models.CharField(
-        max_length=50,
-        default="Schedule Consultation",
-        help_text="Primary call-to-action text"
-    )
-    cta_secondary_text = models.CharField(
-        max_length=50,
-        default="Learn About Our Approach",
-        help_text="Secondary call-to-action text"
-    )
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = "Services Page Content"
-        verbose_name_plural = "Services Page Content"
-
-    def __str__(self):
-        return "Services Page Content"
-
-    def save(self, *args, **kwargs):
-        if not self.pk and ServicesPage.objects.exists():
-            raise ValueError("Only one ServicesPage instance is allowed")
-        return super().save(*args, **kwargs)
-
-class BlogPage(models.Model):
-    """Model for blog page content that can be updated through admin"""
-
-    page_label = models.CharField(
-        max_length=100,
-        default="Insights Library",
-        help_text="Label shown above the blog title"
-    )
-    page_title = models.CharField(
-        max_length=200,
-        default="Blog",
-        help_text="Main blog page title"
-    )
-    page_subtitle = models.TextField(
-        default="Latest thoughts, perspectives, and articles from the field.",
-        help_text="Blog page subtitle/introduction"
-    )
-    featured_posts_title = models.CharField(
-        max_length=200,
-        default="Featured Articles",
-        help_text="Title for featured posts"
-    )
-    featured_posts_subtitle = models.CharField(
-        max_length=250,
-        default="Selected highlights from the latest financial thinking",
-        help_text="Subtitle for featured posts"
-    )
-    all_posts_title = models.CharField(
-        max_length=200,
-        default="All Articles",
-        help_text="Title for the full post list"
-    )
-    all_posts_subtitle = models.CharField(
-        max_length=250,
-        default="Browse the latest articles and commentary",
-        help_text="Subtitle for the full post list"
-    )
-    cta_title = models.CharField(
-        max_length=200,
-        default="Keep Exploring",
-        help_text="Call to action title"
-    )
-    cta_description = models.TextField(
-        default="If you want deeper guidance, connect for a direct conversation about your goals.",
-        help_text="Call to action description"
-    )
-    cta_button_text = models.CharField(
-        max_length=50,
-        default="Schedule Consultation",
-        help_text="Call to action button text"
-    )
-    cta_button_url = models.CharField(
-        max_length=200,
-        default="/contact/",
-        help_text="Call to action button URL"
-    )
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = "Blog Page Content"
-        verbose_name_plural = "Blog Page Content"
-
-    def __str__(self):
-        return "Blog Page Content"
-
-    def save(self, *args, **kwargs):
-        if not self.pk and BlogPage.objects.exists():
-            raise ValueError("Only one BlogPage instance is allowed")
         return super().save(*args, **kwargs)
 
 class Service(models.Model):

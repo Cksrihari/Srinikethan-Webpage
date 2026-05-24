@@ -1,16 +1,16 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
 
-{% block title %}{{ services_page.page_title }} - {{ settings.site_title }}{% endblock %}
+{% block title %}Expertise - Srinikethan{% endblock %}
 
 {% block content %}
 <!-- Expertise Header -->
 <section class="expertise-header">
     <div class="container">
         <div class="header-content">
-            <span class="expertise-label">{{ services_page.page_label }}</span>
-            <h1 class="expertise-title">{{ services_page.page_title }}</h1>
-            <p class="expertise-intro">{{ services_page.page_subtitle }}</p>
+            <span class="expertise-label">Professional Services</span>
+            <h1 class="expertise-title">Wealth Management Expertise</h1>
+            <p class="expertise-intro">Comprehensive financial solutions designed to grow, protect, and preserve your wealth across generations.</p>
         </div>
     </div>
 </section>
@@ -19,8 +19,8 @@
 <section class="core-services">
     <div class="container">
         <div class="section-intro">
-            <h2>{{ services_page.core_services_title }}</h2>
-            <p>{{ services_page.core_services_subtitle }}</p>
+            <h2>Core Wealth Management Services</h2>
+            <p>Strategic financial planning with personalized solutions for your unique goals</p>
         </div>
         
         <div class="services-grid">
@@ -117,8 +117,8 @@
 <section class="specialized-services">
     <div class="container">
         <div class="section-header">
-            <h2>{{ services_page.specialized_title }}</h2>
-            <p>{{ services_page.specialized_subtitle }}</p>
+            <h2>Specialized Wealth Solutions</h2>
+            <p>Advanced strategies for high-net-worth individuals and complex financial situations</p>
         </div>
         
         <div class="specialties-grid">
@@ -202,8 +202,8 @@
 <section class="wealth-process">
     <div class="container">
         <div class="process-header">
-            <h2>{{ services_page.process_title }}</h2>
-            <p>{{ services_page.process_subtitle }}</p>
+            <h2>Our Wealth Management Process</h2>
+            <p>A systematic approach to building and preserving your wealth</p>
         </div>
         
         <div class="process-steps">
@@ -238,11 +238,11 @@
 <section class="expertise-cta">
     <div class="container">
         <div class="cta-content">
-            <h2>{{ services_page.cta_title }}</h2>
-            <p>{{ services_page.cta_description }}</p>
+            <h2>Ready to Transform Your Financial Future?</h2>
+            <p>Schedule a confidential consultation to discuss your wealth management needs and discover how we can help you achieve your financial goals.</p>
             <div class="cta-actions">
-                <a href="{% url 'contact' %}" class="primary-cta">{{ services_page.cta_primary_text }}</a>
-                <a href="{% url 'about' %}" class="secondary-cta">{{ services_page.cta_secondary_text }}</a>
+                <a href="{% url 'contact' %}" class="primary-cta">Schedule Consultation</a>
+                <a href="{% url 'about' %}" class="secondary-cta">Learn About Our Approach</a>
             </div>
         </div>
     </div>

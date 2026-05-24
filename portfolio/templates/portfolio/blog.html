@@ -1,103 +1,18 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}{{ blog_page.page_title }} - {{ settings.site_title }}{% endblock %}
+{% block title %}Blog - Srinikethan{% endblock %}
 
 {% block content %}
 <section class="page-header">
     <div class="container">
-        <p class="page-kicker">{{ blog_page.page_label }}</p>
-        <h1>{{ blog_page.page_title }}</h1>
-        <p>{{ blog_page.page_subtitle }}</p>
-    </div>
-</section>
-
-{% if featured_posts %}
-<section class="content-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>{{ blog_page.featured_posts_title }}</h2>
-            <p>{{ blog_page.featured_posts_subtitle }}</p>
-        </div>
-        <div class="insights-grid">
-            {% for post in featured_posts %}
-            <article class="insight-card">
-                <div class="card-visual">
-                    {% if post.featured_image %}
-                    <div class="insight-image">
-                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="article-image">
-                        <div class="image-overlay"></div>
-                    </div>
-                    {% endif %}
-                    <div class="publish-date">{{ post.published_at|date:"M j" }}</div>
-                </div>
-                <div class="card-content">
-                    <h4 class="insight-title">
-                        <a href="{% url 'blog_detail' post.slug %}" class="title-link">{{ post.title }}</a>
-                    </h4>
-                    <p class="insight-excerpt">{{ post.excerpt }}</p>
-                    <div class="read-more">
-                        <a href="{% url 'blog_detail' post.slug %}" class="read-link">Continue Reading →</a>
-                    </div>
-                </div>
-            </article>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
-<section class="content-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>{{ blog_page.all_posts_title }}</h2>
-            <p>{{ blog_page.all_posts_subtitle }}</p>
-        </div>
-        {% if posts %}
-        <div class="articles-grid">
-            {% for post in posts %}
-            <article class="article-card">
-                <div class="article-image">
-                    {% if post.featured_image %}
-                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
-                    {% else %}
-                        <div class="article-placeholder">📰</div>
-                    {% endif %}
-                </div>
-                <div class="article-content">
-                    <span class="article-date">{{ post.published_at|date:"M d, Y" }}</span>
-                    <h3 class="article-title">{{ post.title }}</h3>
-                    <p class="article-excerpt">{{ post.excerpt }}</p>
-                    <a href="{% url 'blog_detail' post.slug %}" class="read-article-btn">
-                        <span>Read More</span>
-                        <div class="btn-icon">→</div>
-                    </a>
-                </div>
-            </article>
-            {% endfor %}
-        </div>
-        {% if posts.has_other_pages %}
-        <div class="pagination">
-            {% if posts.has_previous %}
-            <a href="?page={{ posts.previous_page_number }}">Previous</a>
-            {% endif %}
-            <span>Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
-            {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}">Next</a>
-            {% endif %}
-        </div>
-        {% endif %}
-        {% else %}
-        <p>No published articles are available yet.</p>
-        {% endif %}
+        <h1>Blog</h1>
     </div>
 </section>
 
 <section class="content-section">
     <div class="container">
-        <div class="cta-content">
-            <h2>{{ blog_page.cta_title }}</h2>
-            <p>{{ blog_page.cta_description }}</p>
-            <a href="{{ blog_page.cta_button_url }}" class="primary-cta">{{ blog_page.cta_button_text }}</a>
+        <div class="content">
+            <p>Blog content will go here...</p>
         </div>
     </div>
 </section>

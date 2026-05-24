@@ -79,8 +79,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                        <h4>{{ settings.site_title }}</h4>
-                        <p>{{ settings.about_content|truncatewords:18 }}</p>
+                    <h4>Srinikethan</h4>
+                    <p>Empowering your financial future through strategic guidance and personalized solutions.</p>
                 </div>
                 <div class="footer-links">
                     <div class="link-group">
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; {% now "Y" %} {{ settings.site_title }}. Crafted with dedication.</p>
+                <p>&copy; {{ current_year|default:'2026' }} Srinikethan. Crafted with dedication.</p>
             </div>
         </div>
     </footer>

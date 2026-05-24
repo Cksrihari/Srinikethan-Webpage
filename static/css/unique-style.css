@@ -13,7 +13,6 @@ body {
     color: #e2e8f0;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a1a3a 100%);
     overflow-x: hidden;
-    overflow-y: auto;
     scroll-behavior: smooth;
     padding-top: 4rem;
 }
@@ -2031,62 +2030,6 @@ body {
 
 .send-message-btn:hover .btn-icon {
     transform: translateX(5px);
-}
-
-/* ===== BLOG / INNER PAGE SECTIONS ===== */
-
-.page-header {
-    padding: 5rem 0 3rem;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a1a3a 100%);
-    border-bottom: 1px solid rgba(159, 122, 234, 0.15);
-}
-
-.page-header .page-kicker {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #9f7aea;
-    margin-bottom: 0.75rem;
-}
-
-.page-header h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #f0f0f0;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-}
-
-.page-header p {
-    color: #a0aec0;
-    font-size: 1.05rem;
-    max-width: 640px;
-}
-
-.content-section {
-    padding: 3rem 0;
-}
-
-.content-section .article-meta {
-    display: flex;
-    gap: 1.5rem;
-    color: #718096;
-    font-size: 0.88rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.content-section .content {
-    color: #cbd5e0;
-    font-size: 1rem;
-    line-height: 1.8;
-    max-width: 760px;
-}
-
-.content-section .content p {
-    margin-bottom: 1.25rem;
 }
 
 /* ===== COMPREHENSIVE RESPONSIVE DESIGN ===== */

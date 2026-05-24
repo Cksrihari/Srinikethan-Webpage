@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from portfolio.models import HomePage, MyStory, ServicesPage, BlogPage
+from portfolio.models import HomePage, MyStory
 
 class Command(BaseCommand):
     help = 'Initialize homepage and my story content with default values'
@@ -25,26 +25,6 @@ class Command(BaseCommand):
         else:
             self.stdout.write(
                 self.style.WARNING('MyStory content already exists')
-            )
-
-        services_page, created = ServicesPage.objects.get_or_create(pk=1)
-        if created:
-            self.stdout.write(
-                self.style.SUCCESS('Successfully created ServicesPage content with default values')
-            )
-        else:
-            self.stdout.write(
-                self.style.WARNING('ServicesPage content already exists')
-            )
-
-        blog_page, created = BlogPage.objects.get_or_create(pk=1)
-        if created:
-            self.stdout.write(
-                self.style.SUCCESS('Successfully created BlogPage content with default values')
-            )
-        else:
-            self.stdout.write(
-                self.style.WARNING('BlogPage content already exists')
             )
 
         self.stdout.write(

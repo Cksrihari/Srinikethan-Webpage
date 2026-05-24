@@ -13,7 +13,6 @@ body {
     color: #e2e8f0;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a1a3a 100%);
     overflow-x: hidden;
-    overflow-y: auto;
     scroll-behavior: smooth;
     padding-top: 4rem;
 }
@@ -124,34 +123,21 @@ body {
 .mobile-sidebar {
     position: fixed;
     top: 0;
-    right: 0;
-    width: 50%;
+    right: -100%;
+    width: 300px;
     height: 100vh;
-    background: linear-gradient(
-        135deg,
-        rgba(20, 10, 35, 0.65) 0%,
-        rgba(15, 8, 30, 0.55) 50%,
-        rgba(20, 10, 35, 0.65) 100%
-    );
-    backdrop-filter: blur(24px) saturate(1.6);
-    -webkit-backdrop-filter: blur(24px) saturate(1.6);
-    border-left: 1px solid rgba(159, 122, 234, 0.25);
-    box-shadow:
-        -8px 0 32px rgba(0, 0, 0, 0.3),
-        inset 1px 0 0 rgba(255, 255, 255, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    z-index: 1002;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(159, 122, 234, 0.2);
+    z-index: 1002; /* Higher than navigation */
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 6rem 2rem 2rem 2rem;
     display: flex;
     flex-direction: column;
-    transform: translateX(100%);
-    visibility: hidden;
 }
 
 .mobile-sidebar.active {
-    transform: translateX(0);
-    visibility: visible;
+    right: 0;
 }
 
 /* Mobile Close Button */
@@ -2033,62 +2019,6 @@ body {
     transform: translateX(5px);
 }
 
-/* ===== BLOG / INNER PAGE SECTIONS ===== */
-
-.page-header {
-    padding: 5rem 0 3rem;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a1a3a 100%);
-    border-bottom: 1px solid rgba(159, 122, 234, 0.15);
-}
-
-.page-header .page-kicker {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #9f7aea;
-    margin-bottom: 0.75rem;
-}
-
-.page-header h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #f0f0f0;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-}
-
-.page-header p {
-    color: #a0aec0;
-    font-size: 1.05rem;
-    max-width: 640px;
-}
-
-.content-section {
-    padding: 3rem 0;
-}
-
-.content-section .article-meta {
-    display: flex;
-    gap: 1.5rem;
-    color: #718096;
-    font-size: 0.88rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.content-section .content {
-    color: #cbd5e0;
-    font-size: 1rem;
-    line-height: 1.8;
-    max-width: 760px;
-}
-
-.content-section .content p {
-    margin-bottom: 1.25rem;
-}
-
 /* ===== COMPREHENSIVE RESPONSIVE DESIGN ===== */
 
 /* Mobile First - Base Mobile Styles (320px+) */
@@ -2172,7 +2102,7 @@ body {
     /* Welcome Banner Mobile */
     .welcome-banner {
         min-height: 75vh;
-        padding: 3rem 0 1.5rem;
+        padding: 5rem 0 1.5rem;
     }
     
     .banner-content {
@@ -2724,7 +2654,7 @@ body {
     
     /* Mobile Sidebar Adjustments */
     .mobile-sidebar {
-        width: 50%;
+        width: 280px;
         padding: 5rem 1.5rem 2rem;
     }
     
@@ -2786,7 +2716,7 @@ body {
     
     /* Extra small mobile adjustments */
     .mobile-sidebar {
-        width: 70%;
+        width: 100%;
         padding: 4rem 1rem 2rem;
     }
     
