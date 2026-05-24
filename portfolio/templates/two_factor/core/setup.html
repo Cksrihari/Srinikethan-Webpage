@@ -1,0 +1,73 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block extra_media %}{{ form.media }}{% endblock %}
+
+{% block title %}Update Authenticator App{% endblock %}
+
+{% block content %}
+  <h2>Update Authenticator App</h2>
+
+  {# ── Step indicator ──────────────────────────────────────────────── #}
+  {% if wizard.steps.current == 'generator' or wizard.steps.current == 'validation' or wizard.steps.current == 'method' %}
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:1.5rem;">
+      {% with steps=wizard.steps %}
+        {% for step in steps.all %}
+          <div style="flex:1;text-align:center;">
+            <div style="width:28px;height:28px;border-radius:50%;margin:0 auto 0.3rem;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;
+              {% if forloop.counter0 < steps.index %}background:#1a5cb8;color:#fff;
+              {% elif step == steps.current %}background:#1a5cb8;color:#fff;box-shadow:0 0 0 3px rgba(26,92,184,0.25);
+              {% else %}background:#e2e8f0;color:#718096;{% endif %}">
+              {{ forloop.counter }}
+            </div>
+            <div style="font-size:0.7rem;color:{% if step == steps.current %}#1a5cb8;font-weight:600;{% else %}#a0aec0;{% endif %}">
+              {% if step == 'method' %}Method
+              {% elif step == 'generator' %}Scan QR
+              {% elif step == 'validation' %}Verify
+              {% else %}{{ step|title }}
+              {% endif %}
+            </div>
+          </div>
+          {% if not forloop.last %}
+            <div style="flex:2;height:2px;background:#e2e8f0;margin-bottom:1.5rem;"></div>
+          {% endif %}
+        {% endfor %}
+      {% endwith %}
+    </div>
+  {% endif %}
+
+  {# ── Step content ─────────────────────────────────────────────────── #}
+  {% if wizard.steps.current == 'welcome' %}
+    <p class="auth-subtitle">Follow the steps below to link your authenticator app.</p>
+
+  {% elif wizard.steps.current == 'method' %}
+    <p class="auth-subtitle">Select your authentication method.</p>
+
+  {% elif wizard.steps.current == 'generator' %}
+    <p class="auth-subtitle" style="margin-bottom:1rem;">Open your authenticator app and scan this QR code.</p>
+
+    <div style="text-align:center;margin-bottom:1rem;">
+      <img src="{{ QR_URL }}" alt="QR Code" style="background:#fff;padding:8px;border-radius:8px;border:1.5px solid #dde3ec;max-width:180px;" />
+    </div>
+
+    <details style="margin-bottom:1.25rem;">
+      <summary style="font-size:0.82rem;color:#718096;cursor:pointer;user-select:none;">Can't scan? Enter key manually</summary>
+      <div style="background:#f7f9fc;border:1.5px solid #dde3ec;border-radius:8px;padding:0.65rem 0.9rem;margin-top:0.5rem;font-size:0.85rem;color:#2d3748;word-break:break-all;font-family:monospace;">
+        {{ secret_key }}
+      </div>
+    </details>
+
+    <p class="auth-subtitle" style="margin-bottom:0.5rem;">Enter the 6-digit code shown in your app to confirm.</p>
+
+  {% elif wizard.steps.current == 'validation' %}
+    <p class="auth-subtitle">Enter the token sent to your device to confirm.</p>
+
+  {% endif %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    {% include "two_factor/_wizard_forms.html" %}
+    <input type="submit" value="" hidden />
+    {% include "two_factor/_wizard_actions.html" %}
+  </form>
+{% endblock %}

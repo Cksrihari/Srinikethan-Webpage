@@ -1,0 +1,24 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block title %}Two-Factor Authentication Required{% endblock %}
+
+{% block content %}
+  <div style="text-align:center;margin-bottom:1.5rem;">
+    <div style="width:56px;height:56px;background:linear-gradient(135deg,#1a5cb8,#2a7ae2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 8px 24px rgba(26,92,184,0.4);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    <h2 style="margin:0 0 0.4rem;">Two-Factor Authentication is Mandatory</h2>
+    <p class="auth-subtitle" style="margin:0;">Disabling 2FA is not permitted on this account.</p>
+  </div>
+
+  <div style="background:#f0f7ff;border:1.5px solid #c3d8f5;border-radius:10px;padding:1rem 1.1rem;margin-bottom:1.5rem;font-size:0.9rem;color:#2d3748;line-height:1.6;">
+    Two-factor authentication keeps your account secure and cannot be turned off. If you need to switch to a new authenticator app or device, use the <strong>Update</strong> option instead.
+  </div>
+
+  <a href="{% url 'two_factor:profile' %}" class="btn btn-primary btn-block" style="margin-bottom:0.75rem;">
+    ← Back to Security Settings
+  </a>
+{% endblock %}

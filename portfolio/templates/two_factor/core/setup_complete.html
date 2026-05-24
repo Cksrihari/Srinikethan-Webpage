@@ -1,0 +1,23 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block title %}Authenticator Updated{% endblock %}
+
+{% block content %}
+  <div style="text-align:center;margin-bottom:1.5rem;">
+    <div style="width:56px;height:56px;background:linear-gradient(135deg,#1a5cb8,#2a7ae2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 8px 24px rgba(26,92,184,0.4);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h2 style="margin:0 0 0.4rem;">Authenticator Updated</h2>
+    <p class="auth-subtitle" style="margin:0;">Your two-factor authentication device has been saved successfully.</p>
+  </div>
+
+  <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-secondary btn-block" style="margin-bottom:0.75rem;">
+    View Backup Codes
+  </a>
+  <a href="{% url 'two_factor:profile' %}" class="btn btn-primary btn-block">
+    Back to Security Settings
+  </a>
+{% endblock %}

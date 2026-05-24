@@ -1,0 +1,223 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Dynamic Welcome Banner -->
+<section class="welcome-banner">
+    <div class="container">
+        <div class="banner-content">
+            <div class="floating-image">
+                {% if homepage.profile_photo %}
+                <img src="{{ homepage.profile_photo.url }}" alt="Srinikethan" class="profile-photo">
+                {% else %}
+                <img src="{% static 'img/edited-photo.png' %}" alt="Srinikethan" class="profile-photo">
+                {% endif %}
+                <div class="photo-backdrop"></div>
+            </div>
+            <div class="intro-text">
+                <span class="greeting">{{ homepage.welcome_label }}</span>
+                <h1 class="main-title">{{ homepage.welcome_title }}</h1>
+                <div class="tagline-wrapper">
+                    <p class="dynamic-tagline">{{ homepage.welcome_subtitle }}</p>
+                </div>
+                <div class="action-buttons">
+                    <a href="{{ homepage.secondary_cta_url }}" class="explore-btn">{{ homepage.secondary_cta_text }}</a>
+                    <a href="{{ homepage.primary_cta_url }}" class="connect-btn">{{ homepage.primary_cta_text }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-prompt">
+            <div class="scroll-text">{{ homepage.scroll_prompt_text }}</div>
+            <div class="scroll-animation">⇣</div>
+        </div>
+    </div>
+</section>
+
+<!-- Philosophy & Mission -->
+<section class="philosophy-section" id="expertise">
+    <div class="container">
+        <div class="philosophy-grid">
+            <div class="mission-card">
+                <div class="card-number">01</div>
+                <h3>{{ homepage.philosophy_title }}</h3>
+                <div class="mission-content">
+                    {{ homepage.philosophy_subtitle|linebreaksbr }}
+                </div>
+            </div>
+            <div class="vision-highlights">
+                <div class="highlight-item">
+                    <div class="icon-wrapper">🎯</div>
+                    <h4>{{ homepage.philosophy_highlight_1 }}</h4>
+                    <p>Tailored financial roadmaps for sustainable growth</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="icon-wrapper">🚀</div>
+                    <h4>{{ homepage.philosophy_highlight_2 }}</h4>
+                    <p>Transforming financial challenges into opportunities</p>
+                </div>
+                <div class="highlight-item">
+                    <div class="icon-wrapper">🤝</div>
+                    <h4>{{ homepage.philosophy_highlight_3 }}</h4>
+                    <p>Walking alongside you on your financial journey</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expertise Areas -->
+<section class="expertise-section">
+    <div class="container">
+        <div class="section-intro">
+            <span class="section-label">{{ homepage.expertise_label }}</span>
+            <h2 class="section-title">{{ homepage.expertise_title }}</h2>
+            <p class="section-description">{{ homepage.expertise_subtitle }}</p>
+        </div>
+        <div class="expertise-carousel">
+            {% for service in services %}
+            <div class="expertise-card">
+                <div class="card-header">
+                    {% if service.icon %}
+                    <div class="expertise-icon">{{ service.icon }}</div>
+                    {% endif %}
+                    <h4 class="expertise-title">{{ service.title }}</h4>
+                </div>
+                <div class="expertise-description">
+                    <p>{{ service.description|truncatewords:25 }}</p>
+                </div>
+                <div class="expertise-features">
+                    <span class="feature-tag">Personalized</span>
+                    <span class="feature-tag">Results-Driven</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Financial Journeys -->
+<section class="journeys-section">
+    <div class="container">
+        <div class="journeys-header">
+            <div class="header-content">
+                <span class="section-badge">{{ homepage.journeys_label }}</span>
+                <h2 class="journeys-title">{{ homepage.journeys_title }}</h2>
+                <p class="journeys-subtitle">{{ homepage.journeys_subtitle }}</p>
+            </div>
+        </div>
+        <div class="journeys-grid">
+            {% for program in programs %}
+            <div class="journey-pathway">
+                <div class="pathway-header">
+                    <div class="journey-number">{{ forloop.counter|stringformat:"02d" }}</div>
+                    <h4 class="pathway-name">{{ program.name }}</h4>
+                </div>
+                <div class="pathway-details">
+                    <p class="pathway-description">{{ program.description }}</p>
+                    <div class="pathway-metrics">
+                        {% if program.duration %}
+                        <div class="metric">
+                            <span class="metric-label">Duration</span>
+                            <span class="metric-value">{{ program.duration }}</span>
+                        </div>
+                        {% endif %}
+                        {% if program.price %}
+                        <div class="metric">
+                            <span class="metric-label">Investment</span>
+                            <span class="metric-value">₹{{ program.price }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="pathway-action">
+                    <a href="{% url 'contact' %}" class="pathway-btn">Begin Journey</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% if testimonials %}
+<!-- Success Stories -->
+<section class="success-stories">
+    <div class="container">
+        <div class="stories-header">
+            <h2 class="stories-title">{{ homepage.success_stories_title }}</h2>
+            <p class="stories-subtitle">{{ homepage.success_stories_subtitle }}</p>
+        </div>
+        <div class="stories-showcase">
+            {% for testimonial in testimonials %}
+            <div class="story-card">
+                <div class="story-quote">
+                    <div class="quote-mark">"</div>
+                    <p class="story-content">{{ testimonial.content }}</p>
+                </div>
+                <div class="story-author">
+                    <div class="author-profile">
+                        {% if testimonial.photo %}
+                        <div class="author-avatar">
+                            <img src="{{ testimonial.photo.url }}" alt="{{ testimonial.name }}" class="avatar-img">
+                        </div>
+                        {% endif %}
+                        <div class="author-details">
+                            <h5 class="author-name">{{ testimonial.name }}</h5>
+                            {% if testimonial.position and testimonial.company %}
+                            <p class="author-role">{{ testimonial.position }} at {{ testimonial.company }}</p>
+                            {% elif testimonial.company %}
+                            <p class="author-role">{{ testimonial.company }}</p>
+                            {% elif testimonial.position %}
+                            <p class="author-role">{{ testimonial.position }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if latest_posts %}
+<!-- Knowledge Hub -->
+<section class="knowledge-hub">
+    <div class="container">
+        <div class="hub-header">
+            <div class="header-left">
+                <span class="hub-label">{{ homepage.knowledge_hub_label }}</span>
+                <h2 class="hub-title">{{ homepage.knowledge_hub_title }}</h2>
+                <p class="hub-description">{{ homepage.knowledge_hub_subtitle }}</p>
+            </div>
+            <div class="header-right">
+                <a href="{% url 'blog' %}" class="view-all-btn">Explore All Articles</a>
+            </div>
+        </div>
+        <div class="insights-grid">
+            {% for post in latest_posts %}
+            <article class="insight-card">
+                <div class="card-visual">
+                    {% if post.featured_image %}
+                    <div class="insight-image">
+                        <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" class="article-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                    {% endif %}
+                    <div class="publish-date">{{ post.published_at|date:"M j" }}</div>
+                </div>
+                <div class="card-content">
+                    <h4 class="insight-title">
+                        <a href="{% url 'blog_detail' post.slug %}" class="title-link">{{ post.title }}</a>
+                    </h4>
+                    <p class="insight-excerpt">{{ post.excerpt }}</p>
+                    <div class="read-more">
+                        <a href="{% url 'blog_detail' post.slug %}" class="read-link">Continue Reading →</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

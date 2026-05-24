@@ -1,0 +1,52 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ post.title }} - {{ settings.site_title }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <p class="page-kicker">Blog Article</p>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.excerpt }}</p>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="article-meta">
+            <span>{{ post.published_at|date:"F j, Y" }}</span>
+            {% if post.tags %}
+            <span>{{ post.tags }}</span>
+            {% endif %}
+        </div>
+        <div class="content">
+            {{ post.content|linebreaks }}
+        </div>
+    </div>
+</section>
+
+{% if related_posts %}
+<section class="content-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Related Articles</h2>
+        </div>
+        <div class="articles-grid">
+            {% for related in related_posts %}
+            <article class="article-card">
+                <div class="article-content">
+                    <span class="article-date">{{ related.published_at|date:"M d, Y" }}</span>
+                    <h3 class="article-title">{{ related.title }}</h3>
+                    <p class="article-excerpt">{{ related.excerpt }}</p>
+                    <a href="{% url 'blog_detail' related.slug %}" class="read-article-btn">
+                        <span>Read More</span>
+                        <div class="btn-icon">→</div>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

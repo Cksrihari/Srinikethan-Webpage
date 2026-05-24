@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Srinikethan – Secure Login{% endblock %} | Content Manager</title>
+
+  <!-- Bootstrap 4 (matches AdminLTE / jazzmin) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  {% block extra_media %}{% endblock %}
+
+  <style>
+    /* ── Page foundation ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #0a0e1a 0%, #0d2137 50%, #112b47 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #e2e8f0;
+    }
+
+    /* ── Brand header ──────────────────────────────────────────────── */
+    .auth-brand {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .auth-brand .brand-logo {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #1a5cb8, #2a7ae2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      box-shadow: 0 8px 24px rgba(26, 92, 184, 0.4);
+    }
+    .auth-brand .brand-logo svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+    .auth-brand h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #f0f4ff;
+      letter-spacing: 0.02em;
+      margin: 0 0 0.25rem;
+    }
+    .auth-brand p {
+      font-size: 0.82rem;
+      color: #718096;
+      margin: 0;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── Card ──────────────────────────────────────────────────────── */
+    .auth-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2.25rem 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+    }
+    .auth-card h2, .auth-card h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0d2137;
+      margin: 0 0 0.4rem;
+    }
+    .auth-card > p, .auth-card .auth-subtitle {
+      font-size: 0.87rem;
+      color: #718096;
+      margin: 0 0 1.5rem;
+      line-height: 1.55;
+    }
+
+    /* ── Form elements ─────────────────────────────────────────────── */
+    .auth-card label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+    .auth-card .form-control,
+    .auth-card input[type="text"],
+    .auth-card input[type="password"],
+    .auth-card input[type="email"],
+    .auth-card select {
+      background: #f7f9fc;
+      border: 1.5px solid #dde3ec;
+      border-radius: 8px;
+      color: #111;
+      font-size: 0.93rem;
+      padding: 0.6rem 0.9rem;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .auth-card .form-control:focus,
+    .auth-card input:focus,
+    .auth-card select:focus {
+      border-color: #1a5cb8;
+      box-shadow: 0 0 0 3px rgba(26, 92, 184, 0.15);
+      background: #fff;
+      outline: none;
+    }
+    .auth-card .form-group { margin-bottom: 1.1rem; }
+
+    /* Table-based wizard forms (two_factor default) */
+    .auth-card table { width: 100%; border: none; }
+    .auth-card table th {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #2d3748;
+      padding: 0 0 0.35rem;
+      white-space: nowrap;
+      width: 1%;
+      vertical-align: middle;
+      border: none;
+    }
+    .auth-card table td {
+      padding: 0 0 0.9rem 0.75rem;
+      border: none;
+      vertical-align: middle;
+    }
+    .auth-card table td:first-child { padding-left: 0; }
+    .auth-card .helptext, .auth-card .help-block {
+      font-size: 0.78rem;
+      color: #a0aec0;
+      margin-top: 0.25rem;
+      display: block;
+    }
+    .auth-card .errorlist {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0;
+      font-size: 0.8rem;
+      color: #e53e3e;
+    }
+
+    /* QR code image */
+    .auth-card img { max-width: 100%; height: auto; }
+
+    /* ── Buttons ───────────────────────────────────────────────────── */
+    .auth-card .btn-primary,
+    .auth-card button[type="submit"].btn-primary {
+      background: linear-gradient(135deg, #1a5cb8, #2a7ae2);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.5rem;
+      letter-spacing: 0.02em;
+      color: #fff;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(26, 92, 184, 0.3);
+    }
+    .auth-card .btn-primary:hover {
+      opacity: 0.9;
+      box-shadow: 0 6px 18px rgba(26, 92, 184, 0.4);
+    }
+    .auth-card .btn-secondary {
+      background: #f0f4ff;
+      border: 1.5px solid #c3d0e8;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: #1a5cb8;
+      padding: 0.6rem 1.2rem;
+    }
+    .auth-card .btn-secondary:hover { background: #e2eaf9; }
+    .auth-card .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .auth-card .btn-link {
+      color: #1a5cb8;
+      font-size: 0.87rem;
+      font-weight: 500;
+    }
+    .auth-card .float-right { float: right; }
+
+    /* ── Step indicator / separator ────────────────────────────────── */
+    .auth-card hr {
+      border-color: #edf2f7;
+      margin: 1.25rem 0;
+    }
+
+    /* ── Alert overrides ───────────────────────────────────────────── */
+    .auth-card .alert {
+      border-radius: 8px;
+      font-size: 0.87rem;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .auth-card .alert-warning {
+      background: #fffbeb;
+      border: 1px solid #f6d860;
+      color: #7a5c00;
+    }
+
+    /* ── Footer note ───────────────────────────────────────────────── */
+    .auth-footer {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      color: #4a5568;
+      text-align: center;
+    }
+    .auth-footer a { color: #7fa8d8; text-decoration: none; }
+    .auth-footer a:hover { text-decoration: underline; }
+
+    /* Secret key display */
+    .auth-card a[href^="otpauth"] {
+      display: inline-block;
+      background: #f0f4ff;
+      border: 1px solid #c3d0e8;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #0d2137;
+      word-break: break-all;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .auth-card a[href^="otpauth"]:hover { background: #dce6f7; }
+  </style>
+</head>
+<body>
+
+  <!-- Brand header -->
+  <div class="auth-brand">
+    <div class="brand-logo">
+      <!-- Shield / lock icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 14H9v-2h2v2zm0-4H9V7h2v4zm4 4h-2v-2h2v2zm0-4h-2V7h2v4z"/>
+      </svg>
+    </div>
+    <h1>Srinikethan</h1>
+    <p>Content Manager</p>
+  </div>
+
+  <!-- Main content card -->
+  <div class="auth-card">
+    {% block content_wrapper %}
+      {% block content %}{% endblock %}
+    {% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <div class="auth-footer">
+    Protected by two-factor authentication &nbsp;·&nbsp;
+    <a href="{% url 'home' %}">Back to website</a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.min.js" defer></script>
+</body>
+</html>

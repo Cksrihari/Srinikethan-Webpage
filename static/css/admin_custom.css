@@ -1,0 +1,124 @@
+/* ============================================================
+   Srinikethan Admin - Jazzmin overrides
+   ============================================================ */
+
+/* Sidebar brand */
+.brand-link {
+  background-color: #0d2137 !important;
+  border-bottom: 1px solid rgba(255,255,255,.1) !important;
+}
+.brand-link .brand-text {
+  font-weight: 700 !important;
+  letter-spacing: .5px !important;
+}
+
+/* Top navbar accent line */
+.main-header.navbar {
+  border-bottom: 3px solid #1a5cb8 !important;
+}
+
+/* Sidebar active item */
+.nav-sidebar .nav-item > .nav-link.active {
+  background-color: #1a5cb8 !important;
+  color: #fff !important;
+}
+
+/* Card/fieldset headers */
+.card-title {
+  font-weight: 700 !important;
+  font-size: .95rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: .5px !important;
+}
+
+/* Save buttons */
+.submit-row input[type=submit],
+.submit-row button[type=submit] {
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+}
+
+/* Darker text inside input fields and textareas */
+.form-control,
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="number"],
+input[type="password"],  
+textarea,
+select {
+  color: #d8d8d8 !important;
+}
+
+/* Status badge helpers */
+.sk-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.sk-badge-green  { background: #d4edda; color: #155724; }
+.sk-badge-red    { background: #f8d7da; color: #721c24; }
+.sk-badge-yellow { background: #fff3cd; color: #856404; }
+
+/* Help text */
+.help-block, .form-text {
+  color: #6c757d !important;
+  font-size: .82rem !important;
+}
+
+/* Page background */
+.content-wrapper {
+  background-color: #f4f6f9 !important;
+}
+
+/* ── Sidebar section labels ──────────────────────────────────────────────── */
+/* Uses CSS :has() – Chrome 105+, Firefox 121+, Safari 15.4+                */
+
+/* "PAGE SETTINGS" label before the first page-level item */
+.nav-sidebar .nav-item:has(> .nav-link[href*="/portfolio/homepage/"])::before {
+  content: "PAGE SETTINGS";
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 0.3rem 0.75rem 0.15rem;
+  text-transform: uppercase;
+}
+
+/* Divider + "CONTENT" label before Blog Posts */
+.nav-sidebar .nav-item:has(> .nav-link[href*="/portfolio/blogpost/"]) {
+  margin-top: 0.5rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-sidebar .nav-item:has(> .nav-link[href*="/portfolio/blogpost/"])::before {
+  content: "CONTENT";
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 0.35rem 0.75rem 0.15rem;
+  text-transform: uppercase;
+}
+
+/* Divider + "INBOX" label before Contacts */
+.nav-sidebar .nav-item:has(> .nav-link[href*="/portfolio/contact/"]) {
+  margin-top: 0.5rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-sidebar .nav-item:has(> .nav-link[href*="/portfolio/contact/"])::before {
+  content: "INBOX";
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 0.35rem 0.75rem 0.15rem;
+  text-transform: uppercase;
+}

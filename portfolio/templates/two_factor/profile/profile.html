@@ -1,0 +1,54 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+{% load two_factor_tags %}
+
+{% block title %}Two-Factor Authentication{% endblock %}
+
+{% block content %}
+  <h2>{% block heading %}Two-Factor Authentication{% endblock %}</h2>
+  <p class="auth-subtitle">Secure your account with an authenticator app.</p>
+
+  {% if default_device %}
+    {# ── Current device status ── #}
+    <div style="background:#f0f7ff;border:1.5px solid #c3d8f5;border-radius:10px;padding:1rem 1.1rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5cb8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <div>
+        <div style="font-size:0.82rem;font-weight:700;color:#1a5cb8;text-transform:uppercase;letter-spacing:0.04em;">Active Device</div>
+        <div style="font-size:0.92rem;color:#2d3748;margin-top:0.1rem;">{{ default_device|as_action }}</div>
+      </div>
+    </div>
+
+    {# ── Update device ── #}
+    <a href="{% url 'two_factor_update' %}" class="btn btn-primary btn-block" style="margin-bottom:0.75rem;">
+      Update Authenticator App
+    </a>
+
+    {# ── Backup codes ── #}
+    <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-secondary btn-block" style="margin-bottom:1.5rem;">
+      Backup Codes
+      {% if backup_tokens is not None %}
+        <span style="margin-left:0.5rem;background:rgba(26,92,184,0.12);color:#1a5cb8;font-size:0.75rem;font-weight:700;padding:2px 8px;border-radius:20px;">{{ backup_tokens }} remaining</span>
+      {% endif %}
+    </a>
+
+  {% else %}
+    {# ── No device configured ── #}
+    <div style="background:#fff8e1;border:1.5px solid #ffe082;border-radius:10px;padding:1rem 1.1rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <div style="font-size:0.9rem;color:#2d3748;">
+        Two-factor authentication is <strong>required</strong>. Please configure your authenticator app to continue.
+      </div>
+    </div>
+
+    <a href="{% url 'two_factor:setup' %}" class="btn btn-primary btn-block" style="margin-bottom:1.5rem;">
+      Set Up Authenticator App
+    </a>
+  {% endif %}
+
+  <hr>
+  <a href="/admin/" style="font-size:0.85rem;color:#718096;">← Back to Admin</a>
+{% endblock %}

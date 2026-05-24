@@ -1,0 +1,63 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ mystory.page_title }} - Srinikethan{% endblock %}
+
+{% block content %}
+<!-- Personal Journey Header -->
+<section class="journey-header">
+    <div class="container">
+        <div class="header-content">
+            <span class="journey-label">{{ mystory.page_title }}</span>
+            <h1 class="journey-title">{{ mystory.page_subtitle }}</h1>
+            <p class="journey-intro">{{ mystory.intro_text }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Life Chapters -->
+<section class="life-chapters">
+    <div class="container">
+        <div class="chapters-grid">
+            <div class="chapter-card">
+                <div class="chapter-number">{{ mystory.chapter_1_number }}</div>
+                <h3>{{ mystory.chapter_1_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_1_period }}</span>
+                <p>{{ mystory.chapter_1_content }}</p>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-number">{{ mystory.chapter_2_number }}</div>
+                <h3>{{ mystory.chapter_2_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_2_period }}</span>
+                <p>{{ mystory.chapter_2_content }}</p>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-number">{{ mystory.chapter_3_number }}</div>
+                <h3>{{ mystory.chapter_3_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_3_period }}</span>
+                <p>{{ mystory.chapter_3_content }}</p>
+            </div>
+            <div class="chapter-card">
+                <div class="chapter-number">{{ mystory.chapter_4_number }}</div>
+                <h3>{{ mystory.chapter_4_title }}</h3>
+                <span class="chapter-period">{{ mystory.chapter_4_period }}</span>
+                <p>{{ mystory.chapter_4_content }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values -->
+<section class="values-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>{{ mystory.mission_title }}</h2>
+            <p>{{ mystory.mission_text }}</p>
+        </div>
+        <div class="personal-note">
+            <div class="note-content">
+                <p>{{ mystory.personal_note }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

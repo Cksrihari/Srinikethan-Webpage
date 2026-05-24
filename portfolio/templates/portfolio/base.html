@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Srinikethan - Financial Growth Partner{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/unique-style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Innovative Navigation -->
+    <header class="navigation-hub">
+        <div class="container">
+            <div class="nav-identity">
+                <div class="brand-mark">
+                    <span class="brand-text">SRINIKETHAN C K</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="{% url 'home' %}" class="nav-item {% if request.resolver_match.url_name == 'home' %}current{% endif %}">
+                    <span class="item-label">Home</span>
+                </a>
+                <a href="{% url 'about' %}" class="nav-item {% if request.resolver_match.url_name == 'about' %}current{% endif %}">
+                    <span class="item-label">My Story</span>
+                </a>
+                <a href="{% url 'services' %}" class="nav-item {% if request.resolver_match.url_name == 'services' %}current{% endif %}">
+                    <span class="item-label">Expertise</span>
+                </a>
+                <a href="{% url 'blog' %}" class="nav-item {% if request.resolver_match.url_name == 'blog' %}current{% endif %}">
+                    <span class="item-label">Insights</span>
+                </a>
+                <a href="{% url 'contact' %}" class="nav-item {% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
+                    <span class="item-label">Connect</span>
+                </a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-sidebar" id="mobileSidebar">
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close mobile menu">
+            <span>&times;</span>
+        </button>
+        <div class="mobile-nav-links">
+            <a href="{% url 'home' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'home' %}current{% endif %}">
+                Home
+            </a>
+            <a href="{% url 'about' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'about' %}current{% endif %}">
+                My Story
+            </a>
+            <a href="{% url 'services' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'services' %}current{% endif %}">
+                Expertise
+            </a>
+            <a href="{% url 'blog' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'blog' %}current{% endif %}">
+                Insights
+            </a>
+            <a href="{% url 'contact' %}" class="mobile-nav-item {% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
+                Connect
+            </a>
+        </div>
+    </nav>
+
+    <main class="content-area">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                        <h4>{{ settings.site_title }}</h4>
+                        <p>{{ settings.about_content|truncatewords:18 }}</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>Quick Links</h5>
+                        <a href="{% url 'home' %}">Home</a>
+                        <a href="{% url 'about' %}">My Story</a>
+                        <a href="{% url 'services' %}">Expertise</a>
+                        <a href="{% url 'contact' %}">Connect</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} {{ settings.site_title }}. Crafted with dedication.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

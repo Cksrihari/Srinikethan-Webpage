@@ -1,0 +1,57 @@
+{% extends "two_factor/_base_focus.html" %}
+{% load i18n %}
+
+{% block title %}Backup Codes{% endblock %}
+
+{% block content %}
+  <h2>Backup Codes</h2>
+  <p class="auth-subtitle">
+    Use these single-use codes to log in if you can't access your authenticator app.
+  </p>
+
+  {% if device.token_set.count %}
+    {# ── Tokens grid ────────────────────────────────────────────────── #}
+    <div style="background:#f7f9fc;border:1.5px solid #dde3ec;border-radius:10px;padding:1rem 1.1rem;margin-bottom:1rem;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem 1rem;">
+        {% for token in device.token_set.all %}
+          <code style="font-size:0.93rem;color:{% if token.token %}#1a3a5c{% else %}#b0b8c4;text-decoration:line-through{% endif %};letter-spacing:0.08em;">
+            {{ token.token|default:"used" }}
+          </code>
+        {% endfor %}
+      </div>
+    </div>
+
+    <p style="font-size:0.82rem;color:#718096;margin-bottom:1.25rem;">
+      <strong>{{ device.token_set.count }}</strong> code{{ device.token_set.count|pluralize }} remaining.
+      Each code can only be used once. Save them somewhere safe.
+    </p>
+
+    {# ── Regenerate warning ─────────────────────────────────────────── #}
+    <div style="background:#fff8e1;border:1.5px solid #ffe082;border-radius:8px;padding:0.75rem 1rem;margin-bottom:1.25rem;font-size:0.85rem;color:#7c5e0a;">
+      Generating a new set will permanently invalidate the codes above.
+    </div>
+
+  {% else %}
+    {# ── No codes yet ───────────────────────────────────────────────── #}
+    <div style="background:#fff8e1;border:1.5px solid #ffe082;border-radius:10px;padding:1rem 1.1rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <div style="font-size:0.9rem;color:#2d3748;">
+        You have no backup codes. Generate a set now so you're never locked out.
+      </div>
+    </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary btn-block" type="submit" style="margin-bottom:0.75rem;">
+      {% if device.token_set.count %}Regenerate Backup Codes{% else %}Generate Backup Codes{% endif %}
+    </button>
+    <a href="{% url 'two_factor:profile' %}" class="btn btn-secondary btn-block">
+      ← Back to Security Settings
+    </a>
+  </form>
+{% endblock %}
