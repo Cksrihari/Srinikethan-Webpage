@@ -464,3 +464,57 @@ class Workshop(models.Model):
     
     def __str__(self):
         return self.title
+
+
+class ServicesPage(models.Model):
+    page_label = models.CharField(max_length=100, default='Professional Services', help_text='Label shown above the page title')
+    page_title = models.CharField(max_length=200, default='Wealth Management Expertise', help_text='Main page title')
+    page_subtitle = models.TextField(default='Comprehensive financial solutions designed to grow, protect, and preserve your wealth across generations.', help_text='Page subtitle/introduction')
+    core_services_title = models.CharField(max_length=200, default='Core Wealth Management Services', help_text='Title for the core services section')
+    core_services_subtitle = models.CharField(max_length=250, default='Strategic financial planning with personalized solutions for your unique goals', help_text='Subtitle for the core services section')
+    specialized_title = models.CharField(max_length=200, default='Specialized Wealth Solutions', help_text='Title for the specialized services section')
+    specialized_subtitle = models.CharField(max_length=250, default='Advanced strategies for high-net-worth individuals and complex financial situations', help_text='Subtitle for the specialized services section')
+    process_title = models.CharField(max_length=200, default='Our Wealth Management Process', help_text='Title for the process section')
+    process_subtitle = models.CharField(max_length=250, default='A systematic approach to building and preserving your wealth', help_text='Subtitle for the process section')
+    cta_title = models.CharField(max_length=200, default='Ready to Transform Your Financial Future?', help_text='Call to action title')
+    cta_description = models.TextField(default='Schedule a confidential consultation to discuss your wealth management needs and discover how we can help you achieve your financial goals.', help_text='Call to action description')
+    cta_primary_text = models.CharField(max_length=50, default='Schedule Consultation', help_text='Primary call-to-action text')
+    cta_secondary_text = models.CharField(max_length=50, default='Learn About Our Approach', help_text='Secondary call-to-action text')
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Services Page Content'
+        verbose_name_plural = 'Services Page Content'
+
+    def __str__(self):
+        return 'Services Page Content'
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+
+class BlogPage(models.Model):
+    page_label = models.CharField(max_length=100, default='Insights Library', help_text='Label shown above the blog title')
+    page_title = models.CharField(max_length=200, default='Blog', help_text='Main blog page title')
+    page_subtitle = models.TextField(default='Latest thoughts, perspectives, and articles from the field.', help_text='Blog page subtitle/introduction')
+    featured_posts_title = models.CharField(max_length=200, default='Featured Articles', help_text='Title for featured posts')
+    featured_posts_subtitle = models.CharField(max_length=250, default='Selected highlights from the latest financial thinking', help_text='Subtitle for featured posts')
+    all_posts_title = models.CharField(max_length=200, default='All Articles', help_text='Title for the full post list')
+    all_posts_subtitle = models.CharField(max_length=250, default='Browse the latest articles and commentary', help_text='Subtitle for the full post list')
+    cta_title = models.CharField(max_length=200, default='Keep Exploring', help_text='Call to action title')
+    cta_description = models.TextField(default='If you want deeper guidance, connect for a direct conversation about your goals.', help_text='Call to action description')
+    cta_button_text = models.CharField(max_length=50, default='Schedule Consultation', help_text='Call to action button text')
+    cta_button_url = models.CharField(max_length=200, default='/contact/', help_text='Call to action button URL')
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Blog Page Content'
+        verbose_name_plural = 'Blog Page Content'
+
+    def __str__(self):
+        return 'Blog Page Content'
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
