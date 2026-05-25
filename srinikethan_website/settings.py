@@ -37,6 +37,11 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['localhost', '127.0.0.1', '0.0.0.0', '*'])
 
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
+    'https://srinikethan.azurewebsites.net',
+    'https://*.azurewebsites.net',
+])
+
 
 # Application definition
 
